@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "FOTMARK — Agencia creativa & marketing · Costa del Sol",
+    "description": "Fotmark — agencia de marketing y creatividad en la Costa del Sol. Estrategia, contenido visual, redes sociales y publicidad. De la idea al contenido. Del contenido a los resultados."
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "home": "FOTMARK, inicio",
+    "mainNav": "Navegación principal",
+    "openMenu": "Menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "nav": {
+    "servicios": "Servicios",
+    "proceso": "Proceso",
+    "sectores": "Sectores",
+    "proyectos": "Proyectos",
+    "clientes": "Clientes",
+    "contacto": "Contacto"
+  },
+  "hero": {
+    "descriptor": "Fotografía & Marketing",
+    "tagline": "De la idea al contenido.<br></br>Del contenido a los resultados.",
+    "location": "Agencia creativa · Costa del Sol",
+    "scroll": "Scroll"
+  },
+  "marquee": {
+    "estrategia": "Estrategia",
+    "fotografia": "Fotografía",
+    "video": "Vídeo",
+    "dron": "Dron",
+    "redes": "Redes Sociales",
+    "publicidad": "Publicidad",
+    "branding": "Branding"
+  }
+}

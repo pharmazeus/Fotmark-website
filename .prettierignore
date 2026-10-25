@@ -1,0 +1,12 @@
+pnpm-lock.yaml
+.next/
+.parity/
+node_modules/
+next-env.d.ts
+# agent context (local only)
+.agents/
+.claude/
+.codex/
+AGENTS.md
+CLAUDE.md
+PRODUCT.md

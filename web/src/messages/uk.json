@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "FOTMARK — креативна та маркетингова агенція · Costa del Sol",
+    "description": "Fotmark — маркетингова та креативна агенція на Costa del Sol. Стратегія, візуальний контент, соцмережі й реклама. Від ідеї до контенту. Від контенту до результату."
+  },
+  "a11y": {
+    "skipToContent": "Перейти до змісту",
+    "home": "FOTMARK, на головну",
+    "mainNav": "Головна навігація",
+    "openMenu": "Меню",
+    "closeMenu": "Закрити меню"
+  },
+  "nav": {
+    "servicios": "Послуги",
+    "proceso": "Процес",
+    "sectores": "Сектори",
+    "proyectos": "Проєкти",
+    "clientes": "Клієнти",
+    "contacto": "Контакт"
+  },
+  "hero": {
+    "descriptor": "Fotografía & Marketing",
+    "tagline": "Від ідеї до контенту.<br></br>Від контенту до результату.",
+    "location": "Креативна агенція · Costa del Sol",
+    "scroll": "Гортайте"
+  },
+  "marquee": {
+    "estrategia": "Стратегія",
+    "fotografia": "Фотографія",
+    "video": "Відео",
+    "dron": "Дрон",
+    "redes": "Соцмережі",
+    "publicidad": "Реклама",
+    "branding": "Брендинг"
+  }
+}

@@ -1,0 +1,10 @@
+packages:
+  - web
+
+# Dependency build scripts are blocked unless allowed here (pnpm 11+).
+# All of these ship prebuilt binaries, so their install scripts aren't needed.
+allowBuilds:
+  "@parcel/watcher": false
+  "@swc/core": false
+  sharp: false
+  unrs-resolver: false

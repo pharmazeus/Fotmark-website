@@ -1,0 +1,327 @@
+@import "tailwindcss";
+
+/* Values are the prototype's CSS (.agents/reference/prototype.html). Spec: design-system.md. */
+
+/* ---------- Tokens: dark (default, locked) ---------- */
+:root {
+  --bg: #0b0a08;
+  --bg1: #0e0c0a;
+  --bg2: #141110;
+  --bg3: #1a1613;
+  --ink: #f1ecdf;
+  --ink2: #c9c1b0;
+  --mut: #8e8674;
+  --dim: #5f594c;
+  --acc: #c6a971;
+  --acc2: #e3ce9b;
+  --accd: #8c7a4e;
+  --line: #241f1a;
+  --line2: #2e2822;
+
+  --wordmark: #ece6d8;
+  --wordmark-sub: #9c927e;
+  --monogram: #e9e2d3; /* the brand PNG/SVG cream */
+  --on-acc: #0a0908;
+  --header-bg: rgba(10, 9, 8, 0.72);
+  --glow-appr: rgba(198, 169, 113, 0.1);
+  --glow-cta: rgba(198, 169, 113, 0.14);
+  --prog-glow: rgba(198, 169, 113, 0.5);
+  --cap-shade: rgba(10, 9, 8, 0.82);
+  --lb-bg: rgba(8, 7, 6, 0.96);
+  --lb-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  --grain-opacity: 0.045;
+  --grain-blend: overlay;
+
+  color-scheme: dark;
+}
+
+/* ---------- Tokens: light v0 (proposal, Q-09) ---------- */
+[data-theme="light"] {
+  --bg: #f3f0e8;
+  --bg1: #ece7dc;
+  --bg2: #e5dfd2;
+  --bg3: #ddd6c7;
+  --ink: #1c1a17;
+  --ink2: #3e3931;
+  --mut: #655d4f;
+  --dim: #8f8676;
+  --acc: #6e5e37;
+  --acc2: #806c40;
+  --accd: #c2a875;
+  --line: #ddd6c8;
+  --line2: #cfc7b6;
+
+  --wordmark: #1c1a17;
+  --wordmark-sub: #655d4f;
+  --monogram: #1c1a17;
+  --on-acc: #f3f0e8;
+  --header-bg: rgba(243, 240, 232, 0.78);
+  --glow-appr: rgba(194, 168, 117, 0.18);
+  --glow-cta: rgba(194, 168, 117, 0.22);
+  --grain-opacity: 0.06;
+  --grain-blend: multiply;
+
+  color-scheme: light;
+}
+
+/* ---------- Tailwind theme ---------- */
+@theme {
+  /* Brand lock: nothing off-palette exists. */
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --text-*: initial;
+  --breakpoint-*: initial;
+
+  --ease-fotmark: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* = prototype max-width 700 / 820 / 1080 */
+  --breakpoint-lb: 701px;
+  --breakpoint-nav: 821px;
+  --breakpoint-wide: 1081px;
+
+  --spacing-gut: clamp(22px, 5vw, 90px);
+  --spacing-section: clamp(90px, 13vh, 170px);
+  --container-wrap: 1320px;
+  --container-sh: 880px;
+
+  /* Type scale (design-system.md §3) */
+  --text-wm: clamp(48px, 9.4vw, 132px);
+  --text-wm--line-height: 0.92;
+  --text-wm--letter-spacing: 0.26em;
+  --text-descriptor: clamp(11px, 1.5vw, 16px);
+  --text-descriptor--letter-spacing: 0.5em;
+  --text-tagline: clamp(18px, 2.2vw, 25px);
+  --text-tagline--line-height: 1.5;
+  --text-tagline--letter-spacing: -0.005em;
+  --text-hero-loc: clamp(10px, 1.2vw, 11.5px);
+  --text-hero-loc--letter-spacing: 0.34em;
+  --text-cue: 9px;
+  --text-cue--letter-spacing: 0.36em;
+  --text-intro: clamp(31px, 5.1vw, 64px);
+  --text-intro--line-height: 1.14;
+  --text-intro--letter-spacing: -0.024em;
+  --text-title: clamp(29px, 4.3vw, 53px);
+  --text-title--line-height: 1.12;
+  --text-title--letter-spacing: -0.015em;
+  --text-cta: clamp(30px, 4.8vw, 62px);
+  --text-cta--line-height: 1.12;
+  --text-cta--letter-spacing: -0.018em;
+  --text-enfoque: clamp(26px, 4.2vw, 50px);
+  --text-enfoque--line-height: 1.18;
+  --text-enfoque--letter-spacing: -0.018em;
+  --text-sector: clamp(22px, 2.7vw, 34px);
+  --text-sector--letter-spacing: -0.01em;
+  --text-service: clamp(22px, 2.2vw, 28px);
+  --text-service--letter-spacing: -0.005em;
+  --text-lead: clamp(15px, 1.5vw, 18px);
+  --text-lead--line-height: 1.85;
+  --text-marquee: clamp(18px, 2.1vw, 26px);
+  --text-marquee--letter-spacing: 0.01em;
+  --text-eyebrow: 11px;
+  --text-eyebrow--letter-spacing: 0.42em;
+  --text-nav: 11.5px;
+  --text-nav--letter-spacing: 0.18em;
+  --text-brand: 20px;
+  --text-brand--letter-spacing: 0.34em;
+  --text-menu: clamp(30px, 6.4vw, 48px);
+  --text-menu--letter-spacing: 0.02em;
+  --text-menu-foot: 12px;
+  --text-menu-foot--letter-spacing: 0.16em;
+  --text-index: 13px;
+  --text-index--letter-spacing: 0.2em;
+
+  /* Hero load sequence (design-system.md §5). Keyframes carry the start state and
+     fill `both`, so with animations off (reduced motion) the end state shows (D-024). */
+  --animate-mono: lin 1.2s var(--ease-fotmark) 0.1s both;
+  --animate-wm: lin 1.2s var(--ease-fotmark) 0.26s both;
+  --animate-descriptor: lin 1s var(--ease-fotmark) 0.44s both;
+  --animate-divider: fin 1s var(--ease-fotmark) 0.62s both;
+  --animate-tagline: lin 1s var(--ease-fotmark) 0.72s both;
+  --animate-loc: fin 1s var(--ease-fotmark) 0.86s both;
+  --animate-cue: fin 1s var(--ease-fotmark) 1.05s both;
+  --animate-cue-run: cuerun 2.4s var(--ease-fotmark) infinite;
+  --animate-marquee: marq 32s linear infinite;
+
+  /* `--from` is set per element: the transform it rises from. */
+  @keyframes lin {
+    from {
+      opacity: 0;
+      transform: var(--from, none);
+    }
+  }
+  @keyframes fin {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes cuerun {
+    0% {
+      top: -42px;
+    }
+    60%,
+    100% {
+      top: 42px;
+    }
+  }
+  @keyframes marq {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-jost), -apple-system, Arial, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+
+  --color-bg: var(--bg);
+  --color-bg1: var(--bg1);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-mut: var(--mut);
+  --color-dim: var(--dim);
+  --color-acc: var(--acc);
+  --color-acc2: var(--acc2);
+  --color-accd: var(--accd);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-wordmark: var(--wordmark);
+  --color-wordmark-sub: var(--wordmark-sub);
+  --color-monogram: var(--monogram);
+  --color-on-acc: var(--on-acc);
+  --color-header-bg: var(--header-bg);
+  --color-transparent: transparent;
+}
+
+/* ---------- Base: the prototype's own reset on top of preflight ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans font-light text-ink;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  em {
+    font-style: normal;
+  }
+  ::selection {
+    background: var(--acc);
+    color: var(--on-acc);
+  }
+  :focus-visible {
+    outline: 1px solid var(--acc);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation: none !important;
+      transition-duration: 0.001s !important;
+    }
+  }
+}
+
+/* ---------- Recipes ---------- */
+
+/* .btn: hairline button, gold gradient slides up on hover. Per-use overrides via --btn-* vars. */
+@utility btn {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: var(--btn-py, 16px) var(--btn-px, 34px);
+  font-size: var(--btn-size, 12px);
+  letter-spacing: var(--btn-track, 0.24em);
+  text-transform: uppercase;
+  color: var(--btn-fg, var(--ink));
+  border: 1px solid var(--btn-border, var(--line2));
+  overflow: hidden;
+  transition:
+    color 0.5s var(--ease-fotmark),
+    border-color 0.5s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(120deg, var(--acc), var(--acc2));
+    transform: translateY(101%);
+    transition: transform 0.55s var(--ease-fotmark);
+  }
+  &:hover {
+    color: var(--btn-fg-hover, var(--on-acc));
+    border-color: transparent;
+  }
+  &:hover::before {
+    transform: translateY(0);
+  }
+  & .ar {
+    transition: transform 0.45s var(--ease-fotmark);
+  }
+  &:hover .ar {
+    transform: translate(4px, -2px);
+  }
+
+  @media (width < 821px) {
+    padding: var(--btn-py, 15px) var(--btn-px, 26px);
+    font-size: var(--btn-size, 11px);
+  }
+}
+
+/* Gold 1px underline that grows left→right on hover (nav links). */
+@utility link-underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: var(--underline-offset, 0);
+    width: 100%;
+    height: 1px;
+    background: var(--acc);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--underline-duration, 0.45s) var(--ease-fotmark);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Film grain over the whole page. */
+@utility grain {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
