@@ -15,7 +15,7 @@ export async function Sobre() {
 
   const items = [
     { n: stats.projects, label: t("stats.projects") },
-    { n: stats.years, label: t("stats.years") },
+    { n: stats.years, label: t("stats.years", { count: stats.years }) },
   ];
 
   return (

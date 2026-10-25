@@ -8,7 +8,11 @@
     "home": "FOTMARK, inicio",
     "mainNav": "Navegación principal",
     "openMenu": "Menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "languageSwitcher": "Seleccionar idioma",
+    "themeToggle": "Tema de color",
+    "switchToDark": "Cambiar al tema oscuro",
+    "switchToLight": "Cambiar al tema claro"
   },
   "nav": {
     "servicios": "Servicios",
@@ -177,7 +181,7 @@
     "p2": "Trabajamos con empresas de toda la Costa del Sol, ayudándolas a construir una imagen profesional, destacar online y conectar con nuevos clientes.",
     "stats": {
       "projects": "Proyectos",
-      "years": "Años en la Costa del Sol"
+      "years": "{count, plural, one {Año en la Costa del Sol} other {Años en la Costa del Sol}}"
     }
   },
   "contacto": {
@@ -197,6 +201,60 @@
     "instagram": "Instagram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyright": "© {year} Fotmark · Estrategia. Contenido. Marketing. Resultados."
+    "copyright": "© {year} Fotmark · Estrategia. Contenido. Marketing. Resultados.",
+    "legal": "Información legal",
+    "legalNotice": "Aviso legal",
+    "privacy": "Privacidad",
+    "cookies": "Cookies"
+  },
+  "form": {
+    "title": "Cuéntanos tu proyecto",
+    "intro": "Comparte lo esencial y te responderemos con el siguiente paso adecuado para tu negocio.",
+    "fields": {
+      "name": "Nombre",
+      "contact": "Email o teléfono",
+      "businessType": "Tipo de negocio",
+      "service": "Servicio",
+      "servicePlaceholder": "Selecciona un servicio",
+      "message": "¿Qué quieres conseguir?"
+    },
+    "consent": {
+      "text": "He leído y acepto la",
+      "link": "política de privacidad"
+    },
+    "submit": "Enviar consulta",
+    "sending": "Enviando…",
+    "whatsapp": "O escríbenos por WhatsApp",
+    "status": {
+      "blocked": "No hemos podido validar el envío. Recarga la página e inténtalo de nuevo.",
+      "unavailable": "El formulario aún no está disponible. Escríbenos por WhatsApp o email.",
+      "failed": "No se ha podido enviar. Inténtalo de nuevo o usa WhatsApp."
+    },
+    "errors": {
+      "name": "Introduce tu nombre.",
+      "contact": "Introduce un email o teléfono válido.",
+      "businessType": "Indica tu tipo de negocio.",
+      "service": "Selecciona un servicio.",
+      "message": "Cuéntanos un poco más (mínimo 10 caracteres).",
+      "consent": "Debes aceptar la política de privacidad."
+    }
+  },
+  "pages": {
+    "backHome": "Volver al inicio",
+    "thanks": {
+      "title": "Gracias por escribirnos",
+      "text": "Hemos recibido tu consulta. Te responderemos lo antes posible.",
+      "whatsapp": "Continuar por WhatsApp"
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "text": "La página que buscas no existe o se ha movido."
+    },
+    "legal": {
+      "noticeTitle": "Aviso legal",
+      "privacyTitle": "Política de privacidad",
+      "cookiesTitle": "Política de cookies",
+      "placeholder": "Texto pendiente de revisión legal. No publicar como versión definitiva."
+    }
   }
 }

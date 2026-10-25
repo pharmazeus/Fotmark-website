@@ -2,6 +2,7 @@ pnpm-lock.yaml
 .next/
 .parity/
 node_modules/
+studio/
 next-env.d.ts
 # agent context (local only)
 .agents/

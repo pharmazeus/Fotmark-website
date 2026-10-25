@@ -7,6 +7,8 @@ export const routing = defineRouting({
   localePrefix: { mode: "as-needed", prefixes: { uk: "/ua" } },
   // Crawlers and shared links land on the URL they asked for.
   localeDetection: false,
+  // Metadata owns hreflang so unapproved locales do not leak through Link headers.
+  alternateLinks: false,
 });
 
 export type Locale = (typeof routing.locales)[number];

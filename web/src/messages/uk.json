@@ -8,7 +8,11 @@
     "home": "FOTMARK, на головну",
     "mainNav": "Головна навігація",
     "openMenu": "Меню",
-    "closeMenu": "Закрити меню"
+    "closeMenu": "Закрити меню",
+    "languageSwitcher": "Обрати мову",
+    "themeToggle": "Колірна тема",
+    "switchToDark": "Увімкнути темну тему",
+    "switchToLight": "Увімкнути світлу тему"
   },
   "nav": {
     "servicios": "Послуги",
@@ -34,169 +38,223 @@
     "branding": "Брендинг"
   },
   "queHacemos": {
-    "eyebrow": "Qué hacemos",
-    "statement": "Hacemos que tu negocio <em>destaque</em>.",
-    "col1": "Fotmark combina estrategia, creatividad, producción y marketing en un mismo lugar.",
-    "col2": "Desarrollamos proyectos de principio a fin: desde la idea y la creación de contenido hasta su difusión y promoción.",
-    "col3": "Una visión. Un equipo. Un objetivo: hacer crecer tu presencia."
+    "eyebrow": "Що ми робимо",
+    "statement": "Ми допомагаємо вашому бізнесу <em>вирізнятися</em>.",
+    "col1": "Fotmark поєднує стратегію, креатив, виробництво та маркетинг в одному місці.",
+    "col2": "Ми ведемо проєкти від початку до кінця: від ідеї та створення контенту до його поширення й просування.",
+    "col3": "Одне бачення. Одна команда. Одна мета: посилити вашу присутність."
   },
   "servicios": {
-    "eyebrow": "Servicios",
-    "title": "Todo lo que tu marca necesita,<br></br><em>bajo un mismo proceso</em>",
+    "eyebrow": "Послуги",
+    "title": "Усе, що потрібно вашому бренду,<br></br><em>в одному процесі</em>",
     "items": {
       "fotografia": {
-        "name": "Fotografía",
-        "text": "Creamos imágenes profesionales que reflejan la calidad y personalidad de tu negocio.",
-        "tags": "Gastronomía · Inmobiliaria · Hoteles · Interiores · Productos · Eventos · Marca personal"
+        "name": "Фотографія",
+        "text": "Створюємо професійні зображення, що передають якість і характер вашого бізнесу.",
+        "tags": "Гастрономія · Нерухомість · Готелі · Інтер’єри · Продукти · Події · Особистий бренд"
       },
       "video": {
-        "name": "Vídeo",
-        "text": "Contenido audiovisual diseñado para captar atención y contar la historia de tu marca.",
-        "tags": "Reels · Vídeos promocionales · Publicidad · Eventos · Entrevistas · Contenido para redes"
+        "name": "Відео",
+        "text": "Аудіовізуальний контент, який привертає увагу та розповідає історію вашого бренду.",
+        "tags": "Reels · Промовідео · Реклама · Події · Інтерв’ю · Контент для соцмереж"
       },
       "dron": {
-        "name": "Dron",
-        "text": "Una perspectiva diferente para mostrar espacios, proyectos y experiencias.",
-        "tags": "Inmobiliaria · Hoteles · Villas · Arquitectura · Construcción · Eventos · Negocios"
+        "name": "Дрон",
+        "text": "Інший ракурс для презентації просторів, проєктів і вражень.",
+        "tags": "Нерухомість · Готелі · Вілли · Архітектура · Будівництво · Події · Бізнес"
       },
       "redes": {
-        "name": "Redes Sociales",
-        "text": "Convertimos tu presencia digital en una herramienta real para tu negocio.",
-        "tags": "Estrategia · Contenido · Reels · Gestión · Optimización · Calendario editorial"
+        "name": "Соціальні мережі",
+        "text": "Перетворюємо вашу цифрову присутність на дієвий інструмент для бізнесу.",
+        "tags": "Стратегія · Контент · Reels · Ведення · Оптимізація · Контент-план"
       },
       "publicidad": {
-        "name": "Publicidad",
-        "text": "Llevamos tu marca hasta la audiencia adecuada, en el momento adecuado.",
-        "tags": "Meta Ads · Instagram · Facebook · Captación · Campañas · Optimización · Análisis"
+        "name": "Реклама",
+        "text": "Допомагаємо вашому бренду знайти потрібну аудиторію в потрібний момент.",
+        "tags": "Meta Ads · Instagram · Facebook · Ліди · Кампанії · Оптимізація · Аналітика"
       },
       "branding": {
-        "name": "Creatividad & Branding",
-        "text": "Construimos una imagen coherente, reconocible y alineada con el nivel de tu negocio.",
-        "tags": "Conceptos creativos · Identidad visual · Campañas · Materiales · Creatividades"
+        "name": "Креатив і брендинг",
+        "text": "Створюємо цілісний, упізнаваний образ, що відповідає рівню вашого бізнесу.",
+        "tags": "Креативні концепції · Візуальна айдентика · Кампанії · Матеріали · Креативи"
       }
     }
   },
   "proceso": {
-    "eyebrow": "Cómo trabajamos",
-    "title": "Un método claro,<br></br><em>de la idea al resultado</em>",
+    "eyebrow": "Як ми працюємо",
+    "title": "Зрозумілий метод:<br></br><em>від ідеї до результату</em>",
     "steps": {
       "descubrimos": {
-        "title": "Descubrimos",
-        "text": "Conocemos tu negocio, tu público, tus objetivos y tus oportunidades."
+        "title": "Досліджуємо",
+        "text": "Знайомимося з вашим бізнесом, аудиторією, цілями та можливостями."
       },
       "definimos": {
-        "title": "Definimos",
-        "text": "Creamos una estrategia y un concepto adaptados a tu marca."
+        "title": "Визначаємо",
+        "text": "Створюємо стратегію й концепцію, адаптовані до вашого бренду."
       },
       "creamos": {
-        "title": "Creamos",
-        "text": "Producimos fotografía, vídeo, Reels, contenido para redes y materiales publicitarios."
+        "title": "Створюємо",
+        "text": "Знімаємо фото, відео й Reels, створюємо контент для соцмереж і рекламні матеріали."
       },
       "impulsamos": {
-        "title": "Impulsamos",
-        "text": "Publicamos y activamos campañas para llegar a la audiencia adecuada."
+        "title": "Просуваємо",
+        "text": "Публікуємо контент і запускаємо кампанії для потрібної аудиторії."
       },
       "optimizamos": {
-        "title": "Optimizamos",
-        "text": "Analizamos los resultados y mejoramos continuamente la estrategia."
+        "title": "Оптимізуємо",
+        "text": "Аналізуємо результати й постійно вдосконалюємо стратегію."
       }
     },
     "flow": {
-      "estrategia": "Estrategia",
-      "creatividad": "Creatividad",
-      "impacto": "Impacto"
+      "estrategia": "Стратегія",
+      "creatividad": "Креатив",
+      "impacto": "Вплив"
     }
   },
   "sectores": {
-    "eyebrow": "Sectores",
-    "title": "Trabajamos con negocios<br></br>que quieren <em>destacar</em>",
+    "eyebrow": "Сфери",
+    "title": "Ми працюємо з бізнесами,<br></br>які хочуть <em>вирізнятися</em>",
     "items": {
       "restaurantes": {
-        "name": "Restaurantes & Cafeterías",
-        "text": "Contenido que transmite el ambiente, la gastronomía y la experiencia."
+        "name": "Ресторани та кафе",
+        "text": "Контент, що передає атмосферу, гастрономію та враження."
       },
       "inmobiliaria": {
-        "name": "Inmobiliaria",
-        "text": "Fotografía, vídeo y dron para mostrar propiedades y transmitir un estilo de vida."
+        "name": "Нерухомість",
+        "text": "Фото, відео та дрон, щоб показати об’єкти й передати стиль життя."
       },
       "hoteles": {
-        "name": "Hoteles & Hostelería",
-        "text": "Contenido que convierte espacios y servicios en experiencias visuales."
+        "name": "Готелі та гостинність",
+        "text": "Контент, що перетворює простори й послуги на візуальні враження."
       },
       "construccion": {
-        "name": "Construcción & Interiores",
-        "text": "Mostramos el proceso, los detalles y la calidad del resultado final."
+        "name": "Будівництво та інтер’єри",
+        "text": "Показуємо процес, деталі та якість фінального результату."
       },
       "eventos": {
-        "name": "Eventos",
-        "text": "Capturamos la energía, las emociones y los momentos que hacen único cada evento."
+        "name": "Події",
+        "text": "Фіксуємо енергію, емоції та моменти, які роблять кожну подію унікальною."
       },
       "locales": {
-        "name": "Negocios Locales",
-        "text": "Ayudamos a construir una presencia digital profesional y atractiva."
+        "name": "Локальний бізнес",
+        "text": "Допомагаємо створити професійну й привабливу цифрову присутність."
       }
     }
   },
   "porque": {
-    "eyebrow": "¿Por qué Fotmark?",
-    "title": "Una agencia. Una visión.<br></br><em>Todo el proceso.</em>",
-    "strike": "No necesitas coordinar diferentes profesionales para cada parte de tu marketing.<br></br><b>Fotmark lo integra todo bajo un mismo equipo.</b>",
+    "eyebrow": "Чому Fotmark?",
+    "title": "Одна агенція. Одне бачення.<br></br><em>Увесь процес.</em>",
+    "strike": "Вам не потрібно координувати різних спеціалістів для кожної частини маркетингу.<br></br><b>Fotmark об’єднує все в одній команді.</b>",
     "pillars": {
       "estrategia": {
-        "title": "Estrategia",
-        "text": "Definimos qué comunicar y por qué."
+        "title": "Стратегія",
+        "text": "Визначаємо, що комунікувати й навіщо."
       },
       "creatividad": {
-        "title": "Creatividad",
-        "text": "Encontramos la mejor manera de diferenciar tu marca."
+        "title": "Креатив",
+        "text": "Знаходимо найкращий спосіб вирізнити ваш бренд."
       },
       "produccion": {
-        "title": "Producción",
-        "text": "Creamos contenido visual de calidad profesional."
+        "title": "Виробництво",
+        "text": "Створюємо візуальний контент професійної якості."
       },
       "marketing": {
         "title": "Marketing",
-        "text": "Llevamos ese contenido hasta la audiencia adecuada."
+        "text": "Доносимо цей контент до потрібної аудиторії."
       }
     }
   },
   "enfoque": {
-    "eyebrow": "Nuestro enfoque",
-    "statement": "No creamos contenido por crear.<br></br>Lo creamos con un <em>propósito</em>.",
-    "body": "Una buena imagen llama la atención.<br></br>Una buena estrategia convierte esa atención en oportunidades.",
-    "closing": "Cada proyecto de Fotmark empieza antes de sacar la cámara.<br></br>Empieza con una idea."
+    "eyebrow": "Наш підхід",
+    "statement": "Ми не створюємо контент заради контенту.<br></br>Ми створюємо його з <em>метою</em>.",
+    "body": "Сильне зображення привертає увагу.<br></br>Сильна стратегія перетворює цю увагу на можливості.",
+    "closing": "Кожен проєкт Fotmark починається ще до появи камери.<br></br>Він починається з ідеї."
   },
   "clientes": {
-    "eyebrow": "Confían en Fotmark",
-    "title": "La confianza de nuestros clientes<br></br><em>es parte de nuestro trabajo</em>"
+    "eyebrow": "Нам довіряють",
+    "title": "Довіра наших клієнтів<br></br><em>є частиною нашої роботи</em>"
   },
   "sobre": {
-    "eyebrow": "Sobre Fotmark",
-    "title": "Creado en la<br></br><em>Costa del Sol</em>",
-    "p1": "Fotmark es una agencia de marketing y creatividad con base en Málaga, especializada en contenido visual, estrategia y marketing digital.",
-    "p2": "Trabajamos con empresas de toda la Costa del Sol, ayudándolas a construir una imagen profesional, destacar online y conectar con nuevos clientes.",
+    "eyebrow": "Про Fotmark",
+    "title": "Створено на<br></br><em>Costa del Sol</em>",
+    "p1": "Fotmark — маркетингова та креативна агенція з Малаги, що спеціалізується на візуальному контенті, стратегії та цифровому маркетингу.",
+    "p2": "Ми працюємо з бізнесами по всьому Costa del Sol, допомагаючи їм створити професійний образ, вирізнятися онлайн і знаходити нових клієнтів.",
     "stats": {
-      "projects": "Proyectos",
-      "years": "Años en la Costa del Sol"
+      "projects": "Проєктів",
+      "years": "{count, plural, one {Рік на Costa del Sol} few {Роки на Costa del Sol} many {Років на Costa del Sol} other {Року на Costa del Sol}}"
     }
   },
   "contacto": {
-    "eyebrow": "Hablemos",
-    "title": "¿Listo para hacer que<br></br>tu negocio <em>destaque?</em>",
-    "text": "Cuéntanos qué quieres conseguir y crearemos una propuesta adaptada a tu negocio.",
-    "tagline": "Hagamos que tu marca sea imposible de ignorar.",
-    "button": "Empezar un proyecto",
-    "subject": "Nuevo proyecto con Fotmark"
+    "eyebrow": "Поговорімо",
+    "title": "Готові допомогти своєму<br></br>бізнесу <em>вирізнятися?</em>",
+    "text": "Розкажіть, чого хочете досягти, і ми підготуємо пропозицію для вашого бізнесу.",
+    "tagline": "Зробімо ваш бренд таким, який неможливо ігнорувати.",
+    "button": "Розпочати проєкт",
+    "subject": "Новий проєкт із Fotmark"
   },
   "footer": {
-    "tagline": "De la idea al contenido. Del contenido a los resultados.",
-    "contact": "Contacto",
-    "founder": "{name} · Fundador",
-    "location": "Ubicación",
-    "social": "Redes",
+    "tagline": "Від ідеї до контенту. Від контенту до результату.",
+    "contact": "Контакти",
+    "founder": "{name} · Засновник",
+    "location": "Локація",
+    "social": "Соцмережі",
     "instagram": "Instagram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyright": "© {year} Fotmark · Estrategia. Contenido. Marketing. Resultados."
+    "copyright": "© {year} Fotmark · Стратегія. Контент. Маркетинг. Результати.",
+    "legal": "Правова інформація",
+    "legalNotice": "Правова інформація",
+    "privacy": "Конфіденційність",
+    "cookies": "Cookies"
+  },
+  "form": {
+    "title": "Розкажіть про свій проєкт",
+    "intro": "Поділіться головним, і ми запропонуємо доречний наступний крок для вашого бізнесу.",
+    "fields": {
+      "name": "Ім’я",
+      "contact": "Email або телефон",
+      "businessType": "Тип бізнесу",
+      "service": "Послуга",
+      "servicePlaceholder": "Оберіть послугу",
+      "message": "Чого ви хочете досягти?"
+    },
+    "consent": {
+      "text": "Я прочитав/-ла та приймаю",
+      "link": "політику конфіденційності"
+    },
+    "submit": "Надіслати запит",
+    "sending": "Надсилання…",
+    "whatsapp": "Або напишіть нам у WhatsApp",
+    "status": {
+      "blocked": "Не вдалося перевірити надсилання. Оновіть сторінку та спробуйте ще раз.",
+      "unavailable": "Форма ще недоступна. Напишіть нам у WhatsApp або на email.",
+      "failed": "Не вдалося надіслати запит. Спробуйте ще раз або скористайтеся WhatsApp."
+    },
+    "errors": {
+      "name": "Введіть своє ім’я.",
+      "contact": "Введіть коректний email або номер телефону.",
+      "businessType": "Укажіть тип свого бізнесу.",
+      "service": "Оберіть послугу.",
+      "message": "Розкажіть трохи більше (щонайменше 10 символів).",
+      "consent": "Потрібно прийняти політику конфіденційності."
+    }
+  },
+  "pages": {
+    "backHome": "На головну",
+    "thanks": {
+      "title": "Дякуємо за звернення",
+      "text": "Ми отримали ваш запит і відповімо якнайшвидше.",
+      "whatsapp": "Продовжити у WhatsApp"
+    },
+    "notFound": {
+      "title": "Сторінку не знайдено",
+      "text": "Ця сторінка не існує або її переміщено."
+    },
+    "legal": {
+      "noticeTitle": "Правова інформація",
+      "privacyTitle": "Політика конфіденційності",
+      "cookiesTitle": "Політика cookies",
+      "placeholder": "Текст очікує на юридичну перевірку. Не публікувати як фінальну версію."
+    }
   }
 }

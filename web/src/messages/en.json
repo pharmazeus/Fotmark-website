@@ -8,7 +8,11 @@
     "home": "FOTMARK, home",
     "mainNav": "Main navigation",
     "openMenu": "Menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "languageSwitcher": "Select language",
+    "themeToggle": "Colour theme",
+    "switchToDark": "Switch to dark theme",
+    "switchToLight": "Switch to light theme"
   },
   "nav": {
     "servicios": "Services",
@@ -34,169 +38,223 @@
     "branding": "Branding"
   },
   "queHacemos": {
-    "eyebrow": "Qué hacemos",
-    "statement": "Hacemos que tu negocio <em>destaque</em>.",
-    "col1": "Fotmark combina estrategia, creatividad, producción y marketing en un mismo lugar.",
-    "col2": "Desarrollamos proyectos de principio a fin: desde la idea y la creación de contenido hasta su difusión y promoción.",
-    "col3": "Una visión. Un equipo. Un objetivo: hacer crecer tu presencia."
+    "eyebrow": "What we do",
+    "statement": "We make your business <em>stand out</em>.",
+    "col1": "Fotmark brings strategy, creativity, production and marketing together in one place.",
+    "col2": "We develop projects from start to finish: from the idea and content creation to distribution and promotion.",
+    "col3": "One vision. One team. One goal: to grow your presence."
   },
   "servicios": {
-    "eyebrow": "Servicios",
-    "title": "Todo lo que tu marca necesita,<br></br><em>bajo un mismo proceso</em>",
+    "eyebrow": "Services",
+    "title": "Everything your brand needs,<br></br><em>in one seamless process</em>",
     "items": {
       "fotografia": {
-        "name": "Fotografía",
-        "text": "Creamos imágenes profesionales que reflejan la calidad y personalidad de tu negocio.",
-        "tags": "Gastronomía · Inmobiliaria · Hoteles · Interiores · Productos · Eventos · Marca personal"
+        "name": "Photography",
+        "text": "We create professional images that reflect the quality and personality of your business.",
+        "tags": "Food · Real estate · Hotels · Interiors · Products · Events · Personal brand"
       },
       "video": {
-        "name": "Vídeo",
-        "text": "Contenido audiovisual diseñado para captar atención y contar la historia de tu marca.",
-        "tags": "Reels · Vídeos promocionales · Publicidad · Eventos · Entrevistas · Contenido para redes"
+        "name": "Video",
+        "text": "Audiovisual content designed to capture attention and tell your brand story.",
+        "tags": "Reels · Promotional videos · Advertising · Events · Interviews · Social content"
       },
       "dron": {
-        "name": "Dron",
-        "text": "Una perspectiva diferente para mostrar espacios, proyectos y experiencias.",
-        "tags": "Inmobiliaria · Hoteles · Villas · Arquitectura · Construcción · Eventos · Negocios"
+        "name": "Drone",
+        "text": "A different perspective for showcasing spaces, projects and experiences.",
+        "tags": "Real estate · Hotels · Villas · Architecture · Construction · Events · Business"
       },
       "redes": {
-        "name": "Redes Sociales",
-        "text": "Convertimos tu presencia digital en una herramienta real para tu negocio.",
-        "tags": "Estrategia · Contenido · Reels · Gestión · Optimización · Calendario editorial"
+        "name": "Social Media",
+        "text": "We turn your digital presence into a practical tool for your business.",
+        "tags": "Strategy · Content · Reels · Management · Optimisation · Content calendar"
       },
       "publicidad": {
-        "name": "Publicidad",
-        "text": "Llevamos tu marca hasta la audiencia adecuada, en el momento adecuado.",
-        "tags": "Meta Ads · Instagram · Facebook · Captación · Campañas · Optimización · Análisis"
+        "name": "Advertising",
+        "text": "We take your brand to the right audience at the right time.",
+        "tags": "Meta Ads · Instagram · Facebook · Lead generation · Campaigns · Optimisation · Analysis"
       },
       "branding": {
-        "name": "Creatividad & Branding",
-        "text": "Construimos una imagen coherente, reconocible y alineada con el nivel de tu negocio.",
-        "tags": "Conceptos creativos · Identidad visual · Campañas · Materiales · Creatividades"
+        "name": "Creative & Branding",
+        "text": "We build a coherent, recognisable image aligned with the quality of your business.",
+        "tags": "Creative concepts · Visual identity · Campaigns · Materials · Creative assets"
       }
     }
   },
   "proceso": {
-    "eyebrow": "Cómo trabajamos",
-    "title": "Un método claro,<br></br><em>de la idea al resultado</em>",
+    "eyebrow": "How we work",
+    "title": "A clear method,<br></br><em>from idea to result</em>",
     "steps": {
       "descubrimos": {
-        "title": "Descubrimos",
-        "text": "Conocemos tu negocio, tu público, tus objetivos y tus oportunidades."
+        "title": "Discover",
+        "text": "We get to know your business, audience, goals and opportunities."
       },
       "definimos": {
-        "title": "Definimos",
-        "text": "Creamos una estrategia y un concepto adaptados a tu marca."
+        "title": "Define",
+        "text": "We create a strategy and concept tailored to your brand."
       },
       "creamos": {
-        "title": "Creamos",
-        "text": "Producimos fotografía, vídeo, Reels, contenido para redes y materiales publicitarios."
+        "title": "Create",
+        "text": "We produce photography, video, Reels, social content and advertising materials."
       },
       "impulsamos": {
-        "title": "Impulsamos",
-        "text": "Publicamos y activamos campañas para llegar a la audiencia adecuada."
+        "title": "Launch",
+        "text": "We publish and activate campaigns to reach the right audience."
       },
       "optimizamos": {
-        "title": "Optimizamos",
-        "text": "Analizamos los resultados y mejoramos continuamente la estrategia."
+        "title": "Optimise",
+        "text": "We analyse the results and continuously improve the strategy."
       }
     },
     "flow": {
-      "estrategia": "Estrategia",
-      "creatividad": "Creatividad",
-      "impacto": "Impacto"
+      "estrategia": "Strategy",
+      "creatividad": "Creativity",
+      "impacto": "Impact"
     }
   },
   "sectores": {
-    "eyebrow": "Sectores",
-    "title": "Trabajamos con negocios<br></br>que quieren <em>destacar</em>",
+    "eyebrow": "Sectors",
+    "title": "We work with businesses<br></br>that want to <em>stand out</em>",
     "items": {
       "restaurantes": {
-        "name": "Restaurantes & Cafeterías",
-        "text": "Contenido que transmite el ambiente, la gastronomía y la experiencia."
+        "name": "Restaurants & Cafés",
+        "text": "Content that conveys the atmosphere, food and experience."
       },
       "inmobiliaria": {
-        "name": "Inmobiliaria",
-        "text": "Fotografía, vídeo y dron para mostrar propiedades y transmitir un estilo de vida."
+        "name": "Real Estate",
+        "text": "Photography, video and drone to showcase properties and communicate a lifestyle."
       },
       "hoteles": {
-        "name": "Hoteles & Hostelería",
-        "text": "Contenido que convierte espacios y servicios en experiencias visuales."
+        "name": "Hotels & Hospitality",
+        "text": "Content that turns spaces and services into visual experiences."
       },
       "construccion": {
-        "name": "Construcción & Interiores",
-        "text": "Mostramos el proceso, los detalles y la calidad del resultado final."
+        "name": "Construction & Interiors",
+        "text": "We show the process, the details and the quality of the finished result."
       },
       "eventos": {
-        "name": "Eventos",
-        "text": "Capturamos la energía, las emociones y los momentos que hacen único cada evento."
+        "name": "Events",
+        "text": "We capture the energy, emotion and moments that make every event unique."
       },
       "locales": {
-        "name": "Negocios Locales",
-        "text": "Ayudamos a construir una presencia digital profesional y atractiva."
+        "name": "Local Businesses",
+        "text": "We help build a professional and engaging digital presence."
       }
     }
   },
   "porque": {
-    "eyebrow": "¿Por qué Fotmark?",
-    "title": "Una agencia. Una visión.<br></br><em>Todo el proceso.</em>",
-    "strike": "No necesitas coordinar diferentes profesionales para cada parte de tu marketing.<br></br><b>Fotmark lo integra todo bajo un mismo equipo.</b>",
+    "eyebrow": "Why Fotmark?",
+    "title": "One agency. One vision.<br></br><em>The whole process.</em>",
+    "strike": "You do not need to coordinate different specialists for every part of your marketing.<br></br><b>Fotmark brings it all together under one team.</b>",
     "pillars": {
       "estrategia": {
-        "title": "Estrategia",
-        "text": "Definimos qué comunicar y por qué."
+        "title": "Strategy",
+        "text": "We define what to communicate and why."
       },
       "creatividad": {
-        "title": "Creatividad",
-        "text": "Encontramos la mejor manera de diferenciar tu marca."
+        "title": "Creativity",
+        "text": "We find the best way to set your brand apart."
       },
       "produccion": {
-        "title": "Producción",
-        "text": "Creamos contenido visual de calidad profesional."
+        "title": "Production",
+        "text": "We create professional-quality visual content."
       },
       "marketing": {
         "title": "Marketing",
-        "text": "Llevamos ese contenido hasta la audiencia adecuada."
+        "text": "We bring that content to the right audience."
       }
     }
   },
   "enfoque": {
-    "eyebrow": "Nuestro enfoque",
-    "statement": "No creamos contenido por crear.<br></br>Lo creamos con un <em>propósito</em>.",
-    "body": "Una buena imagen llama la atención.<br></br>Una buena estrategia convierte esa atención en oportunidades.",
-    "closing": "Cada proyecto de Fotmark empieza antes de sacar la cámara.<br></br>Empieza con una idea."
+    "eyebrow": "Our approach",
+    "statement": "We do not create content for its own sake.<br></br>We create it with a <em>purpose</em>.",
+    "body": "A strong image attracts attention.<br></br>A strong strategy turns that attention into opportunities.",
+    "closing": "Every Fotmark project begins before the camera comes out.<br></br>It begins with an idea."
   },
   "clientes": {
-    "eyebrow": "Confían en Fotmark",
-    "title": "La confianza de nuestros clientes<br></br><em>es parte de nuestro trabajo</em>"
+    "eyebrow": "Trusted by our clients",
+    "title": "Our clients’ trust<br></br><em>is part of our work</em>"
   },
   "sobre": {
-    "eyebrow": "Sobre Fotmark",
-    "title": "Creado en la<br></br><em>Costa del Sol</em>",
-    "p1": "Fotmark es una agencia de marketing y creatividad con base en Málaga, especializada en contenido visual, estrategia y marketing digital.",
-    "p2": "Trabajamos con empresas de toda la Costa del Sol, ayudándolas a construir una imagen profesional, destacar online y conectar con nuevos clientes.",
+    "eyebrow": "About Fotmark",
+    "title": "Created on the<br></br><em>Costa del Sol</em>",
+    "p1": "Fotmark is a marketing and creative agency based in Málaga, specialising in visual content, strategy and digital marketing.",
+    "p2": "We work with businesses across the Costa del Sol, helping them build a professional image, stand out online and connect with new customers.",
     "stats": {
-      "projects": "Proyectos",
-      "years": "Años en la Costa del Sol"
+      "projects": "Projects",
+      "years": "{count, plural, one {Year on the Costa del Sol} other {Years on the Costa del Sol}}"
     }
   },
   "contacto": {
-    "eyebrow": "Hablemos",
-    "title": "¿Listo para hacer que<br></br>tu negocio <em>destaque?</em>",
-    "text": "Cuéntanos qué quieres conseguir y crearemos una propuesta adaptada a tu negocio.",
-    "tagline": "Hagamos que tu marca sea imposible de ignorar.",
-    "button": "Empezar un proyecto",
-    "subject": "Nuevo proyecto con Fotmark"
+    "eyebrow": "Let’s talk",
+    "title": "Ready to make your<br></br>business <em>stand out?</em>",
+    "text": "Tell us what you want to achieve and we will create a proposal tailored to your business.",
+    "tagline": "Let’s make your brand impossible to ignore.",
+    "button": "Start a project",
+    "subject": "New project with Fotmark"
   },
   "footer": {
-    "tagline": "De la idea al contenido. Del contenido a los resultados.",
-    "contact": "Contacto",
-    "founder": "{name} · Fundador",
-    "location": "Ubicación",
-    "social": "Redes",
+    "tagline": "From idea to content. From content to results.",
+    "contact": "Contact",
+    "founder": "{name} · Founder",
+    "location": "Location",
+    "social": "Social",
     "instagram": "Instagram",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "copyright": "© {year} Fotmark · Estrategia. Contenido. Marketing. Resultados."
+    "copyright": "© {year} Fotmark · Strategy. Content. Marketing. Results.",
+    "legal": "Legal information",
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
+  },
+  "form": {
+    "title": "Tell us about your project",
+    "intro": "Share the essentials and we will reply with the right next step for your business.",
+    "fields": {
+      "name": "Name",
+      "contact": "Email or phone",
+      "businessType": "Type of business",
+      "service": "Service",
+      "servicePlaceholder": "Select a service",
+      "message": "What would you like to achieve?"
+    },
+    "consent": {
+      "text": "I have read and accept the",
+      "link": "privacy policy"
+    },
+    "submit": "Send enquiry",
+    "sending": "Sending…",
+    "whatsapp": "Or message us on WhatsApp",
+    "status": {
+      "blocked": "We could not validate this submission. Reload the page and try again.",
+      "unavailable": "The form is not available yet. Please contact us by WhatsApp or email.",
+      "failed": "We could not send your enquiry. Try again or use WhatsApp."
+    },
+    "errors": {
+      "name": "Enter your name.",
+      "contact": "Enter a valid email address or phone number.",
+      "businessType": "Tell us your type of business.",
+      "service": "Select a service.",
+      "message": "Tell us a little more (at least 10 characters).",
+      "consent": "You need to accept the privacy policy."
+    }
+  },
+  "pages": {
+    "backHome": "Back to home",
+    "thanks": {
+      "title": "Thanks for getting in touch",
+      "text": "We have received your enquiry and will reply as soon as possible.",
+      "whatsapp": "Continue on WhatsApp"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "text": "The page does not exist or has moved."
+    },
+    "legal": {
+      "noticeTitle": "Legal notice",
+      "privacyTitle": "Privacy policy",
+      "cookiesTitle": "Cookie policy",
+      "placeholder": "Text pending legal review. Do not publish as the final version."
+    }
   }
 }

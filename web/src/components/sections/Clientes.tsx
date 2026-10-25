@@ -1,4 +1,5 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { reveal } from "@/components/ui/reveal";
 import { rich } from "@/components/ui/rich";
@@ -17,10 +18,11 @@ const SLOT = "flex h-[clamp(46px,5.2vw,72px)]";
 // logo wall, then a 3-col testimonial grid (2 ≤1080, 1 ≤820). Clients and testimonials
 // are CMS data (`getClients` / `getTestimonials`); only the head copy is in messages.
 export async function Clientes() {
+  const locale = (await getLocale()) as Locale;
   const [t, clients, testimonials] = await Promise.all([
     getTranslations("clientes"),
     getClients(),
-    getTestimonials(),
+    getTestimonials(locale),
   ]);
 
   return (

@@ -3,6 +3,7 @@ export const BRAND = "FOTMARK";
 
 // Browser UI colour, = --bg of the dark theme (design-system §2.3).
 export const THEME_COLOR = "#0B0A08";
+export const THEME_COLOR_LIGHT = "#F3F0E8";
 
 // Section anchors stay Spanish in every locale (D-021). Order = header nav order.
 export const NAV_SECTIONS = [

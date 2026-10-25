@@ -11,6 +11,9 @@
     "start": "pnpm --filter web start",
     "typecheck": "pnpm --filter web typecheck",
     "lint": "pnpm --filter web lint",
+    "test": "pnpm --filter web test",
+    "e2e": "pnpm --filter web e2e",
+    "lighthouse": "pnpm --filter web lighthouse",
     "parity": "pnpm --filter web parity",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

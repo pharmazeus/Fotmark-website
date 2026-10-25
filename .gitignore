@@ -45,6 +45,7 @@ skills-lock.json
 .parity/
 test-results/
 playwright-report/
+.lighthouseci/
 
 # raw materials (they live in the workspace folder outside the repo; only optimized masters go in src/assets)
 *.zip

@@ -9,24 +9,37 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "lighthouse": "lhci autorun",
     "parity": "node tests/parity/parity.ts"
   },
   "dependencies": {
+    "@t3-oss/env-nextjs": "0.13.11",
+    "botid": "1.5.11",
     "clsx": "2.1.1",
     "next": "16.4.2",
     "next-intl": "4.14.9",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "resend": "6.34.1",
+    "schema-dts": "2.1.0",
     "server-only": "0.0.1",
-    "tailwind-merge": "3.7.0"
+    "tailwind-merge": "3.7.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.64.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^24",
     "@types/pixelmatch": "^5",
     "@types/pngjs": "^6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "5.0.5",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
@@ -34,6 +47,7 @@
     "playwright": "1.64.1",
     "pngjs": "7.0.0",
     "tailwindcss": "4.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "5.0.5"
   }
 }

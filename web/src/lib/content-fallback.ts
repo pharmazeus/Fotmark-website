@@ -1,4 +1,5 @@
 import "server-only";
+import type { Locale } from "@/i18n/routing";
 
 // Clients and testimonials owned by Sanity (`client`, `testimonial`, architecture.md §4).
 // Temporary typed stand-in until Step 3 swaps this for `sanityFetch`; keep the shape.
@@ -111,10 +112,86 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+const translatedTestimonials: Partial<
+  Record<Locale, Array<Pick<Testimonial, "quote" | "subtitle">>>
+> = {
+  en: [
+    {
+      quote:
+        "Fotmark understood our essence and turned it into a high-quality visual identity. The result exceeded our expectations.",
+      subtitle: "Craft brewery · Málaga",
+    },
+    {
+      quote:
+        "Professional, creative work with great attention to detail. Fotmark helped us present our restaurant in a much more engaging way.",
+      subtitle: "Restaurant · Torremolinos",
+    },
+    {
+      quote:
+        "Fotmark communicated the quality of our projects through professional images and videos. We are very happy with the result.",
+      subtitle: "Construction & Interiors · Costa del Sol",
+    },
+    {
+      quote:
+        "Fotmark understood our vision perfectly. The result is dynamic, professional and conveys the energy of every performance.",
+      subtitle: "Artist · Costa del Sol",
+    },
+    {
+      quote:
+        "Thoughtful, creative and professional work. Fotmark captured the essence and atmosphere of our space.",
+      subtitle: "Beach restaurant · Beach & Terrace",
+    },
+    {
+      quote:
+        "Fotmark captured the energy and best moments of our events. A visual result that truly reflects the experience.",
+      subtitle: "Events · Costa del Sol",
+    },
+  ],
+  uk: [
+    {
+      quote:
+        "Fotmark зрозумів нашу сутність і перетворив її на якісний візуальний образ. Результат перевершив наші очікування.",
+      subtitle: "Крафтова броварня · Малага",
+    },
+    {
+      quote:
+        "Професійна й креативна робота з увагою до деталей. Fotmark допоміг показати наш ресторан значно привабливіше.",
+      subtitle: "Ресторан · Торремолінос",
+    },
+    {
+      quote:
+        "Fotmark передав якість наших проєктів через професійні фото й відео. Ми дуже задоволені результатом.",
+      subtitle: "Будівництво та інтер’єри · Costa del Sol",
+    },
+    {
+      quote:
+        "Fotmark чудово зрозумів наше бачення. Результат динамічний, професійний і передає енергію кожного виступу.",
+      subtitle: "Артист · Costa del Sol",
+    },
+    {
+      quote:
+        "Уважна, креативна й професійна робота. Fotmark передав характер і атмосферу нашого простору.",
+      subtitle: "Пляжний ресторан · Beach & Terrace",
+    },
+    {
+      quote:
+        "Fotmark зафіксував енергію та найкращі миті наших подій. Візуальний результат справді передає враження.",
+      subtitle: "Події · Costa del Sol",
+    },
+  ],
+};
+
 export async function getClients(): Promise<Client[]> {
   return wall;
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  return testimonials;
+export async function getTestimonials(
+  locale: Locale = "es",
+): Promise<Testimonial[]> {
+  const copy = translatedTestimonials[locale];
+  if (!copy) return testimonials;
+  return testimonials.map((testimonial, index) => ({
+    ...testimonial,
+    ...copy[index],
+  }));
 }

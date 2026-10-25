@@ -82,6 +82,8 @@
   /* = prototype max-width 700 / 820 / 1080 */
   --breakpoint-lb: 701px;
   --breakpoint-nav: 821px;
+  /* Header-only breakpoint: Q-23. Section layouts keep the approved 821px rule. */
+  --breakpoint-head: 951px;
   --breakpoint-wide: 1081px;
 
   --spacing-gut: clamp(22px, 5vw, 90px);
@@ -194,7 +196,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-jost), -apple-system, Arial, sans-serif;
+  --font-sans:
+    var(--font-jost), var(--font-uk-glyphs), -apple-system, Arial, sans-serif;
   --font-serif: var(--font-cormorant), Georgia, serif;
   /* Arrows and marks Jost lacks (→ ↗). The prototype draws them in -apple-system/Arial;
      inside `font-sans` they'd fall to next/font's size-adjusted "Jost Fallback" instead. */

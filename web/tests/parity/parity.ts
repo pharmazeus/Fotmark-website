@@ -56,6 +56,10 @@ const SECTIONS: [proto: string, app: string][] = [
   ["#contacto", "contacto"],
   ["footer", "footer"],
 ];
+const APP_SELECTORS: Partial<Record<string, string>> = {
+  contacto: '[data-parity-section="contacto"]',
+  footer: '[data-parity-section="footer"]',
+};
 
 // Freeze motion at its end state and hide noise. Photos and brand marks are masked:
 // we compare layout, type and lines; the image pipeline legitimately differs.
@@ -172,7 +176,7 @@ try {
       const suffix = compareMode ? "" : `-${args.theme}-${args.locale}`;
       const a = await shoot(
         app,
-        `[data-section="${name}"]`,
+        APP_SELECTORS[name] ?? `[data-section="${name}"]`,
         `${base}-app${suffix}.png`,
       );
       if (!a) {
