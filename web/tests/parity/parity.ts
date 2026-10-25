@@ -2,7 +2,7 @@
 // 390/820/1440 px and diff them. Spec: .agents/skills/prototype-parity/SKILL.md.
 //
 //   pnpm parity [--section hero] [--url http://localhost:3000] [--proto <file>]
-//               [--theme light] [--locale en|uk] [--widths 390,820]
+//               [--theme light] [--locale en|uk] [--widths 390,820] [--no-isolate]
 //
 // Needs the web dev server running. Output: <repo>/.parity/<section>-<width>-{proto,app,diff}.png
 
@@ -20,6 +20,7 @@ const repo = path.resolve(import.meta.dirname, "../../..");
 const outDir = path.join(repo, ".parity");
 
 const { values: args } = parseArgs({
+  allowNegative: true,
   options: {
     section: { type: "string" },
     url: { type: "string", default: "http://localhost:3000" },
@@ -30,6 +31,8 @@ const { values: args } = parseArgs({
     theme: { type: "string", default: "dark" },
     locale: { type: "string", default: "es" },
     widths: { type: "string", default: "390,820,1440" },
+    // Hide everything before the section while shooting it (see `isolate`).
+    isolate: { type: "boolean", default: true },
   },
 });
 
@@ -59,10 +62,11 @@ const SECTIONS: [proto: string, app: string][] = [
 const FREEZE_CSS = `
 *,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;animation-iteration-count:1!important;transition:none!important}
 .rv,[data-reveal]{opacity:1!important;transform:none!important}
-.grain,.prog,[data-grain],[data-progress]{display:none!important}
+.grain,.prog,[data-grain],[data-progress],[data-skip-link]{display:none!important}
 header{position:absolute!important}
 img,[data-brand-mark]{opacity:0!important}
 nextjs-portal{display:none!important}
+[data-parity-hidden]{display:none!important}
 `;
 
 const PREFIX: Record<string, string> = { es: "", en: "/en", uk: "/ua" };
@@ -103,10 +107,33 @@ async function prepare(page: Page, url: string) {
   });
 }
 
+// Hide every element before `selector` (at each ancestor level), so the section starts at
+// the top of the page in both documents. Otherwise its screenshot depends on the sub-pixel
+// height of everything above it, including sections the app hasn't ported yet.
+async function isolate(page: Page, selector: string) {
+  await page.evaluate((sel) => {
+    let node = document.querySelector(sel);
+    while (node && node !== document.body) {
+      for (let s = node.previousElementSibling; s; s = s.previousElementSibling)
+        s.setAttribute("data-parity-hidden", "");
+      node = node.parentElement;
+    }
+  }, selector);
+}
+
+async function unisolate(page: Page) {
+  await page.evaluate(() => {
+    for (const el of document.querySelectorAll("[data-parity-hidden]"))
+      el.removeAttribute("data-parity-hidden");
+  });
+}
+
 async function shoot(page: Page, selector: string, file: string) {
   const el = page.locator(selector).first();
   if (!(await el.count())) return null;
+  if (args.isolate) await isolate(page, selector);
   const buf = await el.screenshot({ path: file, animations: "disabled" });
+  if (args.isolate) await unisolate(page);
   return PNG.sync.read(buf);
 }
 

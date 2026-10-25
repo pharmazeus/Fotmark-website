@@ -3,8 +3,10 @@ import { Cormorant_Garamond, Jost } from "next/font/google";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/layout/Footer";
 import { Grain } from "@/components/layout/Grain";
 import { Header } from "@/components/layout/Header";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { indexable, routing } from "@/i18n/routing";
@@ -63,12 +65,20 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={`${jost.variable} ${cormorant.variable}`}
     >
+      <head>
+        {/* Without JS nothing would reveal the `[data-reveal]` blocks. */}
+        <noscript>
+          <style>{"[data-reveal]{opacity:1;transform:none}"}</style>
+        </noscript>
+      </head>
       <body>
         <SkipLink />
         <Grain />
         <ScrollProgress />
         <Header />
         {children}
+        <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

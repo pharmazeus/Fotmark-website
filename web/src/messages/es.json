@@ -32,5 +32,171 @@
     "redes": "Redes Sociales",
     "publicidad": "Publicidad",
     "branding": "Branding"
+  },
+  "queHacemos": {
+    "eyebrow": "Qué hacemos",
+    "statement": "Hacemos que tu negocio <em>destaque</em>.",
+    "col1": "Fotmark combina estrategia, creatividad, producción y marketing en un mismo lugar.",
+    "col2": "Desarrollamos proyectos de principio a fin: desde la idea y la creación de contenido hasta su difusión y promoción.",
+    "col3": "Una visión. Un equipo. Un objetivo: hacer crecer tu presencia."
+  },
+  "servicios": {
+    "eyebrow": "Servicios",
+    "title": "Todo lo que tu marca necesita,<br></br><em>bajo un mismo proceso</em>",
+    "items": {
+      "fotografia": {
+        "name": "Fotografía",
+        "text": "Creamos imágenes profesionales que reflejan la calidad y personalidad de tu negocio.",
+        "tags": "Gastronomía · Inmobiliaria · Hoteles · Interiores · Productos · Eventos · Marca personal"
+      },
+      "video": {
+        "name": "Vídeo",
+        "text": "Contenido audiovisual diseñado para captar atención y contar la historia de tu marca.",
+        "tags": "Reels · Vídeos promocionales · Publicidad · Eventos · Entrevistas · Contenido para redes"
+      },
+      "dron": {
+        "name": "Dron",
+        "text": "Una perspectiva diferente para mostrar espacios, proyectos y experiencias.",
+        "tags": "Inmobiliaria · Hoteles · Villas · Arquitectura · Construcción · Eventos · Negocios"
+      },
+      "redes": {
+        "name": "Redes Sociales",
+        "text": "Convertimos tu presencia digital en una herramienta real para tu negocio.",
+        "tags": "Estrategia · Contenido · Reels · Gestión · Optimización · Calendario editorial"
+      },
+      "publicidad": {
+        "name": "Publicidad",
+        "text": "Llevamos tu marca hasta la audiencia adecuada, en el momento adecuado.",
+        "tags": "Meta Ads · Instagram · Facebook · Captación · Campañas · Optimización · Análisis"
+      },
+      "branding": {
+        "name": "Creatividad & Branding",
+        "text": "Construimos una imagen coherente, reconocible y alineada con el nivel de tu negocio.",
+        "tags": "Conceptos creativos · Identidad visual · Campañas · Materiales · Creatividades"
+      }
+    }
+  },
+  "proceso": {
+    "eyebrow": "Cómo trabajamos",
+    "title": "Un método claro,<br></br><em>de la idea al resultado</em>",
+    "steps": {
+      "descubrimos": {
+        "title": "Descubrimos",
+        "text": "Conocemos tu negocio, tu público, tus objetivos y tus oportunidades."
+      },
+      "definimos": {
+        "title": "Definimos",
+        "text": "Creamos una estrategia y un concepto adaptados a tu marca."
+      },
+      "creamos": {
+        "title": "Creamos",
+        "text": "Producimos fotografía, vídeo, Reels, contenido para redes y materiales publicitarios."
+      },
+      "impulsamos": {
+        "title": "Impulsamos",
+        "text": "Publicamos y activamos campañas para llegar a la audiencia adecuada."
+      },
+      "optimizamos": {
+        "title": "Optimizamos",
+        "text": "Analizamos los resultados y mejoramos continuamente la estrategia."
+      }
+    },
+    "flow": {
+      "estrategia": "Estrategia",
+      "creatividad": "Creatividad",
+      "impacto": "Impacto"
+    }
+  },
+  "sectores": {
+    "eyebrow": "Sectores",
+    "title": "Trabajamos con negocios<br></br>que quieren <em>destacar</em>",
+    "items": {
+      "restaurantes": {
+        "name": "Restaurantes & Cafeterías",
+        "text": "Contenido que transmite el ambiente, la gastronomía y la experiencia."
+      },
+      "inmobiliaria": {
+        "name": "Inmobiliaria",
+        "text": "Fotografía, vídeo y dron para mostrar propiedades y transmitir un estilo de vida."
+      },
+      "hoteles": {
+        "name": "Hoteles & Hostelería",
+        "text": "Contenido que convierte espacios y servicios en experiencias visuales."
+      },
+      "construccion": {
+        "name": "Construcción & Interiores",
+        "text": "Mostramos el proceso, los detalles y la calidad del resultado final."
+      },
+      "eventos": {
+        "name": "Eventos",
+        "text": "Capturamos la energía, las emociones y los momentos que hacen único cada evento."
+      },
+      "locales": {
+        "name": "Negocios Locales",
+        "text": "Ayudamos a construir una presencia digital profesional y atractiva."
+      }
+    }
+  },
+  "porque": {
+    "eyebrow": "¿Por qué Fotmark?",
+    "title": "Una agencia. Una visión.<br></br><em>Todo el proceso.</em>",
+    "strike": "No necesitas coordinar diferentes profesionales para cada parte de tu marketing.<br></br><b>Fotmark lo integra todo bajo un mismo equipo.</b>",
+    "pillars": {
+      "estrategia": {
+        "title": "Estrategia",
+        "text": "Definimos qué comunicar y por qué."
+      },
+      "creatividad": {
+        "title": "Creatividad",
+        "text": "Encontramos la mejor manera de diferenciar tu marca."
+      },
+      "produccion": {
+        "title": "Producción",
+        "text": "Creamos contenido visual de calidad profesional."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "text": "Llevamos ese contenido hasta la audiencia adecuada."
+      }
+    }
+  },
+  "enfoque": {
+    "eyebrow": "Nuestro enfoque",
+    "statement": "No creamos contenido por crear.<br></br>Lo creamos con un <em>propósito</em>.",
+    "body": "Una buena imagen llama la atención.<br></br>Una buena estrategia convierte esa atención en oportunidades.",
+    "closing": "Cada proyecto de Fotmark empieza antes de sacar la cámara.<br></br>Empieza con una idea."
+  },
+  "clientes": {
+    "eyebrow": "Confían en Fotmark",
+    "title": "La confianza de nuestros clientes<br></br><em>es parte de nuestro trabajo</em>"
+  },
+  "sobre": {
+    "eyebrow": "Sobre Fotmark",
+    "title": "Creado en la<br></br><em>Costa del Sol</em>",
+    "p1": "Fotmark es una agencia de marketing y creatividad con base en Málaga, especializada en contenido visual, estrategia y marketing digital.",
+    "p2": "Trabajamos con empresas de toda la Costa del Sol, ayudándolas a construir una imagen profesional, destacar online y conectar con nuevos clientes.",
+    "stats": {
+      "projects": "Proyectos",
+      "years": "Años en la Costa del Sol"
+    }
+  },
+  "contacto": {
+    "eyebrow": "Hablemos",
+    "title": "¿Listo para hacer que<br></br>tu negocio <em>destaque?</em>",
+    "text": "Cuéntanos qué quieres conseguir y crearemos una propuesta adaptada a tu negocio.",
+    "tagline": "Hagamos que tu marca sea imposible de ignorar.",
+    "button": "Empezar un proyecto",
+    "subject": "Nuevo proyecto con Fotmark"
+  },
+  "footer": {
+    "tagline": "De la idea al contenido. Del contenido a los resultados.",
+    "contact": "Contacto",
+    "founder": "{name} · Fundador",
+    "location": "Ubicación",
+    "social": "Redes",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copyright": "© {year} Fotmark · Estrategia. Contenido. Marketing. Resultados."
   }
 }

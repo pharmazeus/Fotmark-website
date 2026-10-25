@@ -6,6 +6,7 @@ export async function SkipLink() {
   return (
     <a
       href="#contenido"
+      data-skip-link=""
       className="fixed top-3 left-3 z-3000 -translate-y-[200%] bg-bg1 px-4 py-2 text-nav text-ink uppercase focus-visible:translate-y-0"
     >
       {t("skipToContent")}
