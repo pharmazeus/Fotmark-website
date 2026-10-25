@@ -46,39 +46,7 @@
   },
   "servicios": {
     "eyebrow": "Services",
-    "title": "Everything your brand needs,<br></br><em>in one seamless process</em>",
-    "items": {
-      "fotografia": {
-        "name": "Photography",
-        "text": "We create professional images that reflect the quality and personality of your business.",
-        "tags": "Food · Real estate · Hotels · Interiors · Products · Events · Personal brand"
-      },
-      "video": {
-        "name": "Video",
-        "text": "Audiovisual content designed to capture attention and tell your brand story.",
-        "tags": "Reels · Promotional videos · Advertising · Events · Interviews · Social content"
-      },
-      "dron": {
-        "name": "Drone",
-        "text": "A different perspective for showcasing spaces, projects and experiences.",
-        "tags": "Real estate · Hotels · Villas · Architecture · Construction · Events · Business"
-      },
-      "redes": {
-        "name": "Social Media",
-        "text": "We turn your digital presence into a practical tool for your business.",
-        "tags": "Strategy · Content · Reels · Management · Optimisation · Content calendar"
-      },
-      "publicidad": {
-        "name": "Advertising",
-        "text": "We take your brand to the right audience at the right time.",
-        "tags": "Meta Ads · Instagram · Facebook · Lead generation · Campaigns · Optimisation · Analysis"
-      },
-      "branding": {
-        "name": "Creative & Branding",
-        "text": "We build a coherent, recognisable image aligned with the quality of your business.",
-        "tags": "Creative concepts · Visual identity · Campaigns · Materials · Creative assets"
-      }
-    }
+    "title": "Everything your brand needs,<br></br><em>in one seamless process</em>"
   },
   "proceso": {
     "eyebrow": "How we work",
@@ -169,6 +137,18 @@
     "statement": "We do not create content for its own sake.<br></br>We create it with a <em>purpose</em>.",
     "body": "A strong image attracts attention.<br></br>A strong strategy turns that attention into opportunities.",
     "closing": "Every Fotmark project begins before the camera comes out.<br></br>It begins with an idea."
+  },
+  "proyectos": {
+    "eyebrow": "Selected projects",
+    "title": "Our work",
+    "all": "All",
+    "filters": "Filter by category",
+    "lightbox": {
+      "label": "Gallery",
+      "close": "Close",
+      "prev": "Previous",
+      "next": "Next"
+    }
   },
   "clientes": {
     "eyebrow": "Trusted by our clients",

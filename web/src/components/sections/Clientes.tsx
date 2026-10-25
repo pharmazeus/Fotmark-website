@@ -4,15 +4,16 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { reveal } from "@/components/ui/reveal";
 import { rich } from "@/components/ui/rich";
 import { cn } from "@/lib/cn";
-import { getClients, getTestimonials } from "@/lib/content-fallback";
+import { getClients, getTestimonials } from "@/sanity/fetch";
 import { ClientLogo } from "./clientes/ClientLogo";
 import { TestimonialCard } from "./clientes/TestimonialCard";
 
 // Prototype reveal delays per 3-card row: `.tcard.rv`, `.rv.d1`, `.rv.d2`.
 const ROW_DELAYS = [undefined, 1, 2] as const;
 
-// `.wall .lg`: every wall slot, logo or text, has this height (one-off clamp).
+// `.wall .lg`: every wall slot, logo or text, has this height (one-off clamp, 72px at most).
 const SLOT = "flex h-[clamp(46px,5.2vw,72px)]";
+const WALL_LOGO_MAX_HEIGHT = 72;
 
 // Prototype `#clientes` (`/* CLIENTS */` + `/* TESTIMONIALS */`): centred head, a hairline
 // logo wall, then a 3-col testimonial grid (2 ≤1080, 1 ≤820). Clients and testimonials
@@ -21,7 +22,7 @@ export async function Clientes() {
   const locale = (await getLocale()) as Locale;
   const [t, clients, testimonials] = await Promise.all([
     getTranslations("clientes"),
-    getClients(),
+    getClients(locale),
     getTestimonials(locale),
   ]);
 
@@ -50,6 +51,7 @@ export async function Clientes() {
                 <ClientLogo
                   name={client.name}
                   logo={client.logo}
+                  maxHeight={WALL_LOGO_MAX_HEIGHT}
                   className="opacity-50 [transition:opacity_.5s_var(--ease-fotmark),transform_.5s_var(--ease-fotmark)] group-hover:[transform:scale(1.04)] group-hover:opacity-95"
                 />
               </li>

@@ -23,6 +23,8 @@ jobs:
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
+      - name: Sanity types in sync with the queries
+        run: pnpm typegen && git diff --exit-code web/src/sanity/types.ts
       - run: pnpm test
       - run: pnpm build
       - run: pnpm audit --prod --audit-level high

@@ -12,7 +12,8 @@ type Props = {
 
 export function HeaderControls({ labels, locale }: Props) {
   return (
-    <div className="flex items-center gap-2">
+    // `data-parity-extra`: UI the prototype doesn't have; the parity script hides it.
+    <div data-parity-extra="" className="flex items-center gap-2">
       <LanguageSwitcher label={labels.language} locale={locale} />
       <ThemeToggle labels={labels.theme} />
     </div>

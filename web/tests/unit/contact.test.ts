@@ -46,7 +46,7 @@ describe("contact input", () => {
       contactSchema.safeParse({ ...valid, contact: "not-a-contact" }).success,
     ).toBe(false);
     expect(
-      contactSchema.safeParse({ ...valid, contact: "+34 611 280 574" }).success,
+      contactSchema.safeParse({ ...valid, contact: "+34 600 000 000" }).success,
     ).toBe(true);
   });
   it("strips CR/LF from mail headers", () => {

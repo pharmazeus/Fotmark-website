@@ -1,10 +1,10 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Monogram } from "@/components/brand/Monogram";
 import { contactHrefs } from "@/lib/contact";
-import { getSettings } from "@/lib/settings-fallback";
 import { BRAND } from "@/lib/site";
 import type { Locale } from "@/i18n/routing";
 import { getLocalizedPath } from "@/lib/seo";
+import { getSettings } from "@/sanity/fetch";
 
 // Evaluated when the page is prerendered, so a rebuild keeps the © year current.
 const YEAR = new Date().getFullYear();
@@ -22,10 +22,10 @@ const heading =
 // Phone, email, founder, address, location and socials are CMS facts (settings); only
 // labels are copy. No reveal. Columns: 4 (>1080), 2 (821–1080), 1 (≤820).
 export async function Footer() {
-  const [t, settings, locale] = await Promise.all([
+  const locale = (await getLocale()) as Locale;
+  const [t, settings] = await Promise.all([
     getTranslations("footer"),
-    getSettings(),
-    getLocale(),
+    getSettings(locale),
   ]);
   const href = contactHrefs(settings);
 
@@ -105,19 +105,19 @@ export async function Footer() {
       >
         <a
           className="link-underline"
-          href={getLocalizedPath(locale as Locale, "aviso-legal")}
+          href={getLocalizedPath(locale, "aviso-legal")}
         >
           {t("legalNotice")}
         </a>
         <a
           className="link-underline"
-          href={getLocalizedPath(locale as Locale, "privacidad")}
+          href={getLocalizedPath(locale, "privacidad")}
         >
           {t("privacy")}
         </a>
         <a
           className="link-underline"
-          href={getLocalizedPath(locale as Locale, "cookies")}
+          href={getLocalizedPath(locale, "cookies")}
         >
           {t("cookies")}
         </a>

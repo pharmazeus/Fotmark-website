@@ -28,9 +28,14 @@
   --prog-glow: rgba(198, 169, 113, 0.5);
   --cap-shade: rgba(10, 9, 8, 0.82);
   --lb-bg: rgba(8, 7, 6, 0.96);
+  /* lightbox arrows; like --lb-bg, dark in both themes */
+  --lb-nav: rgba(10, 9, 8, 0.4);
+  --lb-nav-hover: rgba(10, 9, 8, 0.7);
   --lb-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
   --grain-opacity: 0.045;
   --grain-blend: overlay;
+  /* Client logos are cream on transparent: unchanged in dark, black in light (design-system §2.3). */
+  --logo-filter: none;
 
   color-scheme: dark;
 }
@@ -60,6 +65,7 @@
   --glow-cta: rgba(194, 168, 117, 0.22);
   --grain-opacity: 0.06;
   --grain-blend: multiply;
+  --logo-filter: brightness(0);
 
   color-scheme: light;
 }
@@ -414,6 +420,11 @@
     transform: translateX(-50%);
     background: radial-gradient(circle, var(--glow-cta), transparent 60%);
   }
+}
+
+/* Client logo image: follows the theme's `--logo-filter`; opacity and hover stay per use. */
+@utility client-logo {
+  filter: var(--logo-filter);
 }
 
 /* Gold 1px underline that grows left→right on hover (nav links). */

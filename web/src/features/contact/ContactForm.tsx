@@ -22,7 +22,8 @@ export type ContactFormCopy = {
   whatsapp: string;
   statuses: Record<"blocked" | "unavailable" | "failed", string>;
   errors: Record<ContactField, string>;
-  services: Record<(typeof serviceKeys)[number], string>;
+  // Names come from the Sanity services; an option is listed only for a service that exists.
+  services: Partial<Record<(typeof serviceKeys)[number], string>>;
 };
 
 type Props = {
@@ -251,11 +252,16 @@ export function ContactForm({
                 <option value="" disabled>
                   {copy.servicePlaceholder}
                 </option>
-                {serviceKeys.map((service) => (
-                  <option key={service} value={service}>
-                    {copy.services[service]}
-                  </option>
-                ))}
+                {serviceKeys.flatMap((service) => {
+                  const name = copy.services[service];
+                  return name
+                    ? [
+                        <option key={service} value={service}>
+                          {name}
+                        </option>,
+                      ]
+                    : [];
+                })}
               </select>
             </Field>
           </div>

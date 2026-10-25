@@ -16,7 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { buildStructuredData } from "@/lib/seo";
-import { getSettings } from "@/lib/settings-fallback";
+import { getServices, getSettings } from "@/sanity/fetch";
 
 // Prototype order (design-system.md §7).
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
@@ -24,20 +24,12 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   const [meta, services, settings] = await Promise.all([
     getTranslations({ locale, namespace: "meta" }),
-    getTranslations({ locale, namespace: "servicios.items" }),
-    getSettings(),
+    getServices(locale),
+    getSettings(locale),
   ]);
-  const serviceKeys = [
-    "fotografia",
-    "video",
-    "dron",
-    "redes",
-    "publicidad",
-    "branding",
-  ] as const;
   const structuredData = buildStructuredData(locale, settings, {
     description: meta("description"),
-    services: serviceKeys.map((key) => services(`${key}.name`)),
+    services: services.map((service) => service.name),
   });
 
   return (

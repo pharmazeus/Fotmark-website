@@ -6,7 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { routing } from "@/i18n/routing";
 import { contactHrefs } from "@/lib/contact";
 import { buildMetadata, getLocalePath } from "@/lib/seo";
-import { getSettings } from "@/lib/settings-fallback";
+import { getSettings } from "@/sanity/fetch";
 
 export async function generateMetadata({
   params,
@@ -29,7 +29,7 @@ export default async function ThanksPage({
   const [t, pages, settings] = await Promise.all([
     getTranslations({ locale, namespace: "pages.thanks" }),
     getTranslations({ locale, namespace: "pages" }),
-    getSettings(),
+    getSettings(locale),
   ]);
   return (
     <PageShell eyebrow="FOTMARK" title={t("title")}>

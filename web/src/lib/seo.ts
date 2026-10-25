@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Graph, ProfessionalService, WebSite } from "schema-dts";
 import { env } from "@/env";
 import { indexable, type Locale } from "@/i18n/routing";
-import type { Settings } from "./settings-fallback";
+import type { Settings } from "@/sanity/content-types";
 import { BRAND } from "./site";
 
 const localePrefixes: Record<Locale, string> = { es: "", en: "/en", uk: "/ua" };
@@ -101,7 +101,7 @@ export function buildStructuredData(
     description: copy.description,
     email: settings.email,
     telephone: settings.phone,
-    areaServed: ["Málaga", "Costa del Sol"],
+    areaServed: settings.areaServed,
     sameAs: [`https://instagram.com/${settings.instagram.replace(/^@/, "")}`],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

@@ -11,7 +11,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://cdn.sanity.io",
   "font-src 'self' data:",
-  `connect-src 'self' https://*.sanity.io https://*.api.sanity.io wss://*.sanity.io${isDevelopment ? " ws://localhost:* http://localhost:*" : ""}`,
+  `connect-src 'self'${isDevelopment ? " ws://localhost:* http://localhost:*" : ""}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

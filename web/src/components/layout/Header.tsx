@@ -1,16 +1,16 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Monogram } from "@/components/brand/Monogram";
-import { getSettings } from "@/lib/settings-fallback";
 import { BRAND, NAV_SECTIONS } from "@/lib/site";
 import type { Locale } from "@/i18n/routing";
+import { getSettings } from "@/sanity/fetch";
 import { HeaderControls } from "./HeaderControls";
 import { HeaderClient } from "./HeaderClient";
 
 export async function Header() {
-  const [t, settings, locale] = await Promise.all([
+  const locale = (await getLocale()) as Locale;
+  const [t, settings] = await Promise.all([
     getTranslations(),
-    getSettings(),
-    getLocale(),
+    getSettings(locale),
   ]);
 
   return (
@@ -28,7 +28,7 @@ export async function Header() {
       menuFoot={[settings.location, settings.email, settings.instagram]}
       controls={
         <HeaderControls
-          locale={locale as Locale}
+          locale={locale}
           labels={{
             language: t("a11y.languageSwitcher"),
             theme: {

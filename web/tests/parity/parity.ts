@@ -70,7 +70,7 @@ const FREEZE_CSS = `
 header{position:absolute!important}
 img,[data-brand-mark]{opacity:0!important}
 nextjs-portal{display:none!important}
-[data-parity-hidden]{display:none!important}
+[data-parity-hidden],[data-parity-extra]{display:none!important}
 `;
 
 const PREFIX: Record<string, string> = { es: "", en: "/en", uk: "/ua" };

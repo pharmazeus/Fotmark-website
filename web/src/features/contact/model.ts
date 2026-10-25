@@ -1,11 +1,7 @@
-export const serviceKeys = [
-  "fotografia",
-  "video",
-  "dron",
-  "redes",
-  "publicidad",
-  "branding",
-] as const;
+import { SERVICE_KEYS } from "@/sanity/content-types";
+
+// The form's service options are the Studio «Icono» values (one per service document).
+export const serviceKeys = SERVICE_KEYS;
 
 export const contactLocales = ["es", "en", "uk"] as const;
 

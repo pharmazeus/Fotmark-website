@@ -1,6 +1,6 @@
 import { reveal, type RevealDelay } from "@/components/ui/reveal";
-import type { Testimonial } from "@/lib/content-fallback";
 import { cn } from "@/lib/cn";
+import type { Testimonial } from "@/sanity/content-types";
 import { ClientLogo } from "./ClientLogo";
 
 type Props = {
@@ -40,6 +40,7 @@ export function TestimonialCard({ testimonial, delay }: Props) {
             <ClientLogo
               name={client.name}
               logo={client.logo}
+              maxHeight={40}
               decorative
               className="opacity-75"
             />

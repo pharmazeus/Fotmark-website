@@ -46,39 +46,7 @@
   },
   "servicios": {
     "eyebrow": "Servicios",
-    "title": "Todo lo que tu marca necesita,<br></br><em>bajo un mismo proceso</em>",
-    "items": {
-      "fotografia": {
-        "name": "Fotografía",
-        "text": "Creamos imágenes profesionales que reflejan la calidad y personalidad de tu negocio.",
-        "tags": "Gastronomía · Inmobiliaria · Hoteles · Interiores · Productos · Eventos · Marca personal"
-      },
-      "video": {
-        "name": "Vídeo",
-        "text": "Contenido audiovisual diseñado para captar atención y contar la historia de tu marca.",
-        "tags": "Reels · Vídeos promocionales · Publicidad · Eventos · Entrevistas · Contenido para redes"
-      },
-      "dron": {
-        "name": "Dron",
-        "text": "Una perspectiva diferente para mostrar espacios, proyectos y experiencias.",
-        "tags": "Inmobiliaria · Hoteles · Villas · Arquitectura · Construcción · Eventos · Negocios"
-      },
-      "redes": {
-        "name": "Redes Sociales",
-        "text": "Convertimos tu presencia digital en una herramienta real para tu negocio.",
-        "tags": "Estrategia · Contenido · Reels · Gestión · Optimización · Calendario editorial"
-      },
-      "publicidad": {
-        "name": "Publicidad",
-        "text": "Llevamos tu marca hasta la audiencia adecuada, en el momento adecuado.",
-        "tags": "Meta Ads · Instagram · Facebook · Captación · Campañas · Optimización · Análisis"
-      },
-      "branding": {
-        "name": "Creatividad & Branding",
-        "text": "Construimos una imagen coherente, reconocible y alineada con el nivel de tu negocio.",
-        "tags": "Conceptos creativos · Identidad visual · Campañas · Materiales · Creatividades"
-      }
-    }
+    "title": "Todo lo que tu marca necesita,<br></br><em>bajo un mismo proceso</em>"
   },
   "proceso": {
     "eyebrow": "Cómo trabajamos",
@@ -169,6 +137,18 @@
     "statement": "No creamos contenido por crear.<br></br>Lo creamos con un <em>propósito</em>.",
     "body": "Una buena imagen llama la atención.<br></br>Una buena estrategia convierte esa atención en oportunidades.",
     "closing": "Cada proyecto de Fotmark empieza antes de sacar la cámara.<br></br>Empieza con una idea."
+  },
+  "proyectos": {
+    "eyebrow": "Proyectos seleccionados",
+    "title": "Nuestro trabajo",
+    "all": "Todos",
+    "filters": "Filtrar por categoría",
+    "lightbox": {
+      "label": "Galería",
+      "close": "Cerrar",
+      "prev": "Anterior",
+      "next": "Siguiente"
+    }
   },
   "clientes": {
     "eyebrow": "Confían en Fotmark",

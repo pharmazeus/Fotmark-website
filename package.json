@@ -7,14 +7,16 @@
   },
   "scripts": {
     "dev": "pnpm --filter web dev",
+    "studio": "pnpm --filter studio dev",
     "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
-    "typecheck": "pnpm --filter web typecheck",
-    "lint": "pnpm --filter web lint",
+    "typecheck": "pnpm --filter web typecheck && pnpm --filter studio typecheck",
+    "lint": "pnpm --filter web lint && pnpm --filter studio lint",
     "test": "pnpm --filter web test",
     "e2e": "pnpm --filter web e2e",
     "lighthouse": "pnpm --filter web lighthouse",
     "parity": "pnpm --filter web parity",
+    "typegen": "pnpm --filter studio exec sanity schemas extract --force --enforce-required-fields && pnpm --filter studio exec sanity typegen generate",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

@@ -4,12 +4,14 @@ import {
   buildStructuredData,
   getLocalizedPath,
 } from "@/lib/seo";
+import type { Settings } from "@/sanity/content-types";
 
-const settings = {
+const settings: Settings = {
   location: "Málaga · Costa del Sol",
   address: ["Málaga, España", "Costa del Sol"],
-  phone: "+34 611 280 574",
-  whatsapp: "+34 611 280 574",
+  areaServed: ["Málaga", "Marbella", "Costa del Sol"],
+  phone: "+34 672 463 000",
+  whatsapp: "+34 672 463 000",
   email: "fotmark.es@gmail.com",
   instagram: "@fotmark.es",
   founder: "Illia Lutsak",

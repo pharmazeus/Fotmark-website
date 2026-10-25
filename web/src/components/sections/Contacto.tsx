@@ -5,14 +5,13 @@ import {
   ContactForm,
   type ContactFormCopy,
 } from "@/features/contact/ContactForm";
-import { serviceKeys } from "@/features/contact/model";
 import { getLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { getLocalizedPath } from "@/lib/seo";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { rich } from "@/components/ui/rich";
 import { contactHrefs } from "@/lib/contact";
-import { getSettings } from "@/lib/settings-fallback";
+import { getServices, getSettings } from "@/sanity/fetch";
 
 // The heading's <em> isn't gold: only `.title em` is, and `.cta h2` isn't `.title`.
 const titleTags = {
@@ -26,12 +25,12 @@ const titleTags = {
 // fade. Ported as is: no reveal (Q-25, same as Enfoque). The email is a CMS fact
 // (settings); the contact form replaces this mailto link later (Step 4).
 export async function Contacto() {
-  const [t, form, services, settings, locale] = await Promise.all([
+  const locale = (await getLocale()) as Locale;
+  const [t, form, services, settings] = await Promise.all([
     getTranslations("contacto"),
     getTranslations("form"),
-    getTranslations("servicios.items"),
-    getSettings(),
-    getLocale(),
+    getServices(locale),
+    getSettings(locale),
   ]);
   const contacts = contactHrefs(settings);
   const copy: ContactFormCopy = {
@@ -62,7 +61,7 @@ export async function Contacto() {
       consent: form("errors.consent"),
     },
     services: Object.fromEntries(
-      serviceKeys.map((key) => [key, services(`${key}.name`)]),
+      services.map(({ key, name }) => [key, name]),
     ) as ContactFormCopy["services"],
   };
 
@@ -97,8 +96,8 @@ export async function Contacto() {
         </div>
       </div>
       <ContactForm
-        locale={locale as Locale}
-        privacyHref={getLocalizedPath(locale as Locale, "privacidad")}
+        locale={locale}
+        privacyHref={getLocalizedPath(locale, "privacidad")}
         whatsappHref={contacts.whatsapp}
         copy={copy}
       />

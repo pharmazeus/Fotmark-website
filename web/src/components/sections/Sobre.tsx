@@ -1,16 +1,18 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { reveal } from "@/components/ui/reveal";
 import { rich } from "@/components/ui/rich";
-import { getSettings } from "@/lib/settings-fallback";
+import type { Locale } from "@/i18n/routing";
+import { getSettings } from "@/sanity/fetch";
 
 // Prototype `#sobre` (`/* ABOUT */`): one narrow text column (`.wrap.ab-grid`, 880px),
 // two leads and the stats row. The numbers are CMS facts (settings.stats, D-012);
 // only their labels are copy. The clamp() sizes below are this section's own.
 export async function Sobre() {
+  const locale = (await getLocale()) as Locale;
   const [t, { stats }] = await Promise.all([
     getTranslations("sobre"),
-    getSettings(),
+    getSettings(locale),
   ]);
 
   const items = [
