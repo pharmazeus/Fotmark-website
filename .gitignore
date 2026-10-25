@@ -1,0 +1,53 @@
+# PUBLIC repository: commit site source code only.
+# Agent context, secrets and raw materials stay local (a local pre-commit hook enforces it too).
+
+# dependencies & build output
+node_modules/
+.pnpm-store/
+.next/
+out/
+dist/
+.sanity/
+.vercel/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# AI-agent context: internal brief, decisions, skills, memory. Local only, never committed
+AGENTS.md
+CLAUDE.md
+CLAUDE.local.md
+PRODUCT.md
+DESIGN.md
+skills-lock.json
+.mcp.json
+.agents/
+.claude/
+.impeccable/
+.cursor/
+.codex/
+.gemini/
+.windsurf/
+.github/copilot-instructions.md
+
+# OS / logs
+.DS_Store
+*.log
+
+# tooling output
+.parity/
+test-results/
+playwright-report/
+
+# raw materials (they live in the workspace folder outside the repo; only optimized masters go in src/assets)
+*.zip
+*.psd
+*.tif
+*.tiff
