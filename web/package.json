@@ -32,24 +32,24 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.11.0",
+    "@axe-core/playwright": "4.14.0",
     "@lhci/cli": "0.15.1",
     "@playwright/test": "1.64.1",
     "@tailwindcss/turbopack": "4.3.3",
-    "@types/node": "^24",
-    "@types/pixelmatch": "^5",
+    "@types/node": "^26",
+    "@types/pixelmatch": "^7",
     "@types/pngjs": "^6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "5.0.5",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "16.4.2",
     "pixelmatch": "8.0.0",
     "playwright": "1.64.1",
     "pngjs": "7.0.0",
     "tailwindcss": "4.3.3",
-    "typescript": "^5",
+    "typescript": "^7",
     "vitest": "5.0.5"
   }
 }
