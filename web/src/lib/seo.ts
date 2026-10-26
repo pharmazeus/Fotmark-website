@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { Graph, ProfessionalService, WebSite } from "schema-dts";
 import { env } from "@/env";
+import { localePrefixes } from "@/i18n/locale-path";
 import { indexable, type Locale } from "@/i18n/routing";
 import type { Settings } from "@/sanity/content-types";
 import { BRAND } from "./site";
 
-const localePrefixes: Record<Locale, string> = { es: "", en: "/en", uk: "/ua" };
 const openGraphLocales: Record<Locale, string> = {
   es: "es_ES",
   en: "en_GB",
