@@ -217,6 +217,12 @@
       "service": "Select a service.",
       "message": "Tell us a little more (at least 10 characters).",
       "consent": "You need to accept the privacy policy."
+    },
+    "autoReply": {
+      "subject": "We've received your message · FOTMARK",
+      "greeting": "Thanks for getting in touch!",
+      "body": "We've received your message and will reply within 24 hours.",
+      "signoff": "The FOTMARK team"
     }
   },
   "pages": {

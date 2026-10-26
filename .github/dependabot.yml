@@ -4,11 +4,23 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Groups carry minor/patch only; a major arrives as its own PR so it gets a deliberate look.
     groups:
       production-dependencies:
         dependency-type: production
+        update-types: [minor, patch]
       development-dependencies:
         dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # Toolchain majors need coordinated upgrades (typescript-eslint/eslint-config-next
+      # support), and @types/node follows the Node 24 runtime.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:

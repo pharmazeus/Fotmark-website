@@ -13,6 +13,8 @@ export const env = createEnv({
     RESEND_API_KEY: optionalEmail,
     CONTACT_TO_EMAIL: z.email().optional(),
     CONTACT_FROM_EMAIL: optionalEmail,
+    // Signs the Sanity publish webhook (app/api/revalidate). Without it the route answers 503.
+    SANITY_REVALIDATE_SECRET: z.string().min(32).optional(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.url().default("http://localhost:3000"),
@@ -37,6 +39,7 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL,
     CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
+    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,

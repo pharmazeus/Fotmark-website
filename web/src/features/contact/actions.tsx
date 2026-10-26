@@ -1,17 +1,20 @@
 "use server";
 
 import { checkBotId } from "botid/server";
+import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import type { Route } from "next";
 import { Resend } from "resend";
 import { env } from "@/env";
 import { getLocalizedPath } from "@/lib/seo";
+import { AutoReplyEmail } from "./AutoReplyEmail";
 import { ContactEmail } from "./ContactEmail";
 import type { ContactField, ContactState } from "./model";
 import {
   contactInputFromFormData,
   contactSchema,
   stripHeaderBreaks,
+  type ContactInput,
 } from "./schema";
 import { createContactToken, verifyContactToken } from "./token";
 
@@ -73,9 +76,52 @@ export async function sendContact(
       console.error("contact_delivery_failed", { provider: "resend" });
       return { status: "failed" };
     }
+    if (contactIsEmail) {
+      await sendAutoReply({
+        apiKey: RESEND_API_KEY,
+        from: CONTACT_FROM_EMAIL,
+        replyTo: CONTACT_TO_EMAIL,
+        to: stripHeaderBreaks(input.contact),
+        locale: input.locale,
+      });
+    }
   }
 
   redirect(getLocalizedPath(input.locale, "gracias") as Route);
+}
+
+// The sender's confirmation (D-038). Best effort: the enquiry already reached the owner, so a
+// failure is logged and never changes the outcome the visitor sees.
+async function sendAutoReply(options: {
+  apiKey: string;
+  from: string;
+  replyTo: string;
+  to: string;
+  locale: ContactInput["locale"];
+}) {
+  try {
+    const t = await getTranslations({
+      locale: options.locale,
+      namespace: "form.autoReply",
+    });
+    const copy = {
+      subject: t("subject"),
+      greeting: t("greeting"),
+      body: t("body"),
+      signoff: t("signoff"),
+    };
+    const result = await new Resend(options.apiKey).emails.send({
+      from: options.from,
+      to: options.to,
+      replyTo: options.replyTo,
+      subject: copy.subject,
+      react: <AutoReplyEmail copy={copy} />,
+    });
+    if (result.error)
+      console.error("contact_autoreply_failed", { provider: "resend" });
+  } catch {
+    console.error("contact_autoreply_failed", { provider: "resend" });
+  }
 }
 
 function zodEmail(value: string) {
