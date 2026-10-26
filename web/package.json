@@ -37,7 +37,7 @@
     "@playwright/test": "1.64.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^24",
-    "@types/pixelmatch": "^5",
+    "@types/pixelmatch": "^7",
     "@types/pngjs": "^6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
