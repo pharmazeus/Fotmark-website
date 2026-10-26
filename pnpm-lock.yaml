@@ -279,8 +279,8 @@ importers:
         specifier: ^24
         version: 24.19.2
       '@types/pixelmatch':
-        specifier: ^5
-        version: 5.2.6
+        specifier: ^7
+        version: 7.1.0
       '@types/pngjs':
         specifier: ^6
         version: 6.0.5
@@ -2478,6 +2478,10 @@ packages:
       oxc-transform-react:
         optional: true
 
+  '@sanity/client@7.27.0':
+    resolution: {integrity: sha512-qPVfGFo0bjUmRRtrx8mk1a2UnPPM93CFQr97bNacm2J3nShdhJlR6goNA/pQ7eRQO9uEG8moyUNrINYVGXgpPA==}
+    engines: {node: '>=20'}
+
   '@sanity/client@7.28.0':
     resolution: {integrity: sha512-hITQbBmzsECXXd+vJkbpk0sA0Mc31imOcq4MCRRel7aZyQ9CdTZQyJn0y6f9AHg4UQ2d4mitQqke92J6fpqRmQ==}
     engines: {node: '>=20'}
@@ -3178,8 +3182,9 @@ packages:
   '@types/node@24.19.2':
     resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
 
-  '@types/pixelmatch@5.2.6':
-    resolution: {integrity: sha512-wC83uexE5KGuUODn6zkm9gMzTwdY5L0chiK+VrKcDfEjzxh1uadlWTvOmAbCpnM9zx/Ww3f8uKlYQVnO/TrqVg==}
+  '@types/pixelmatch@7.1.0':
+    resolution: {integrity: sha512-0QezS/yQirZ++KVOHu3a49ZB3zeRxGh3PRd9z9+FUNO+14N3oL0vibN3ADEaIvSeY8hsdChi09U6fjTcTcqowQ==}
+    deprecated: This is a stub types definition. pixelmatch provides its own type definitions, so you do not need this installed.
 
   '@types/pngjs@6.0.5':
     resolution: {integrity: sha512-0k5eKfrA83JOZPppLtS2C7OUtyNAl2wKNxfyYl9Q5g9lPkgBl/9hNyAu6HuEH2J4XmIv2znEpkDd0SaZVxW6iQ==}
@@ -11335,6 +11340,13 @@ snapshots:
       - vue-tsc
       - xstate
 
+  '@sanity/client@7.27.0':
+    dependencies:
+      '@sanity/eventsource': 5.0.4
+      get-it: 8.8.3
+      nanoid: 3.3.20
+      rxjs: 7.8.2
+
   '@sanity/client@7.28.0':
     dependencies:
       '@sanity/eventsource': 5.0.4
@@ -11842,7 +11854,7 @@ snapshots:
 
   '@sanity/types@5.31.2(@types/react@19.3.0)':
     dependencies:
-      '@sanity/client': 7.28.0
+      '@sanity/client': 7.27.0
       '@sanity/media-library-types': 1.8.0(@sanity/types@5.31.2(@types/react@19.3.0))
       '@types/react': 19.3.0
 
@@ -12124,14 +12136,14 @@ snapshots:
 
   '@sanity/workflow-blueprint@0.36.0(@sanity/workflow-engine@0.36.0(@types/react@19.3.0)(supports-color@7.2.0)(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
-      '@sanity/client': 7.28.0
+      '@sanity/client': 7.27.0
       '@sanity/workflow-engine': 0.36.0(@types/react@19.3.0)(supports-color@7.2.0)(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
 
   '@sanity/workflow-blueprint@0.36.0(@sanity/workflow-engine@0.36.0(@types/react@19.3.0)(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
-      '@sanity/client': 7.28.0
+      '@sanity/client': 7.27.0
       '@sanity/workflow-engine': 0.36.0(@types/react@19.3.0)(supports-color@8.1.1)(typescript@6.0.3)
     optionalDependencies:
       typescript: 6.0.3
@@ -12519,9 +12531,9 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
-  '@types/pixelmatch@5.2.6':
+  '@types/pixelmatch@7.1.0':
     dependencies:
-      '@types/node': 24.19.2
+      pixelmatch: 8.0.0
 
   '@types/pngjs@6.0.5':
     dependencies:
