@@ -169,6 +169,10 @@
   --animate-cue: fin 1s var(--ease-fotmark) 1.05s both;
   --animate-cue-run: cuerun 2.4s var(--ease-fotmark) infinite;
   --animate-marquee: marq 32s linear infinite;
+  /* Photo loader (ui/Loader.tsx, D-041): the cue's run, sideways. Shows after a beat so
+     a cached photo doesn't flash it. */
+  --animate-loader: fin 0.5s var(--ease-fotmark) 0.3s both;
+  --animate-loader-run: loadrun 1.6s var(--ease-fotmark) infinite;
 
   /* `--from` is set per element: the transform it rises from. */
   @keyframes lin {
@@ -189,6 +193,15 @@
     60%,
     100% {
       top: 42px;
+    }
+  }
+  @keyframes loadrun {
+    0% {
+      transform: translateX(-100%);
+    }
+    60%,
+    100% {
+      transform: translateX(100%);
     }
   }
   @keyframes marq {
