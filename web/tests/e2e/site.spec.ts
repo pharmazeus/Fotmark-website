@@ -78,6 +78,16 @@ test("localized utility pages, form validation and no horizontal overflow", asyn
   );
 });
 
+test("favicon, touch icon and share image are served, not routed to a locale", async ({
+  request,
+}) => {
+  for (const path of ["/icon", "/apple-icon", "/og"]) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(200);
+    expect(response.headers()["content-type"], path).toMatch(/^image\//);
+  }
+});
+
 test("homepage has no serious axe violations", async ({ page }) => {
   await page.goto("/");
   const results = await new AxeBuilder({ page })

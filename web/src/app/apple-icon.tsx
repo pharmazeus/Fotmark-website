@@ -1,25 +1,9 @@
-import { ImageResponse } from "next/og";
+import { brandIcon } from "@/components/brand/brand-icon";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
+// iOS rounds the corners itself, so the glyph keeps a wider margin than the favicon's.
 export default function AppleIcon() {
-  return new ImageResponse(
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#0B0A08",
-        color: "#E3CE9B",
-        fontFamily: "serif",
-        fontSize: 122,
-      }}
-    >
-      F
-    </div>,
-    size,
-  );
+  return brandIcon(size, 120);
 }
