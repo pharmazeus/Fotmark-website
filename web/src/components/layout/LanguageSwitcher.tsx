@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { switchLocalePath } from "@/i18n/locale-path";
 import { routing, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/cn";
 
 const labels: Record<Locale, string> = { es: "ES", en: "EN", uk: "UA" };
-const prefixes: Record<Locale, string> = { es: "", en: "/en", uk: "/ua" };
 
 export function LanguageSwitcher({
   label,
@@ -15,11 +15,6 @@ export function LanguageSwitcher({
   locale: Locale;
 }) {
   const pathname = usePathname();
-  const currentPrefix = prefixes[locale];
-  const unprefixed =
-    currentPrefix && pathname.startsWith(currentPrefix)
-      ? pathname.slice(currentPrefix.length) || "/"
-      : pathname;
 
   return (
     <nav
@@ -34,10 +29,7 @@ export function LanguageSwitcher({
             </span>
           ) : null}
           <a
-            href={
-              `${prefixes[target]}${unprefixed === "/" ? "" : unprefixed}` ||
-              "/"
-            }
+            href={switchLocalePath(pathname, locale, target)}
             lang={target}
             hrefLang={target}
             aria-current={target === locale ? "page" : undefined}
