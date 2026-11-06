@@ -39,10 +39,17 @@
   },
   "queHacemos": {
     "eyebrow": "What we do",
-    "statement": "We make your business <em>stand out</em>.",
-    "col1": "Fotmark brings strategy, creativity, production and marketing together in one place.",
-    "col2": "We develop projects from start to finish: from the idea and content creation to distribution and promotion.",
-    "col3": "One vision. One team. One goal: to grow your presence."
+    "location": "Málaga · Costa del Sol",
+    "statement": "We make your business<br></br><em>stand out</em>.",
+    "disciplinesLabel": "Disciplines",
+    "disciplines": {
+      "strategy": "Strategy",
+      "creativity": "Creativity",
+      "production": "Production",
+      "marketing": "Marketing"
+    },
+    "reading": "Fotmark brings strategy, creativity, production and marketing together in one place. We develop projects from start to finish: from the idea and content creation to distribution and promotion.",
+    "signature": "One vision. One team. One goal: <em>to grow your presence.</em>"
   },
   "servicios": {
     "eyebrow": "Services",

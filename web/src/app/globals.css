@@ -32,6 +32,8 @@
   --lb-nav: rgba(10, 9, 8, 0.4);
   --lb-nav-hover: rgba(10, 9, 8, 0.7);
   --lb-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  /* Inactive words in the owner-approved Qué hacemos reading effect (D-042). */
+  --reading-off: #3b362e;
   --grain-opacity: 0.045;
   --grain-blend: overlay;
   /* Client logos are cream on transparent: unchanged in dark, black in light (design-system §2.3). */
@@ -63,6 +65,8 @@
   --header-bg: rgba(243, 240, 232, 0.78);
   --glow-appr: rgba(194, 168, 117, 0.18);
   --glow-cta: rgba(194, 168, 117, 0.22);
+  /* Reuse the approved light-theme palette for the new reading effect. */
+  --reading-off: var(--line2);
   --grain-opacity: 0.06;
   --grain-blend: multiply;
   --logo-filter: brightness(0);
@@ -326,6 +330,27 @@
 }
 
 /* ---------- Recipes ---------- */
+
+/* Qué hacemos: words progressively brighten while the visitor reads. Without JS and
+   with reduced motion they remain fully legible. */
+@utility qh-reading {
+  & [data-reading-word] {
+    color: var(--ink);
+    transition: color 0.45s var(--ease-fotmark);
+  }
+  &[data-enhanced] [data-reading-word] {
+    color: var(--reading-off);
+  }
+  &[data-enhanced] [data-reading-word][data-on] {
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & [data-reading-word] {
+      color: var(--ink);
+    }
+  }
+}
 
 /* .btn: hairline button, gold gradient slides up on hover. Per-use overrides via --btn-* vars. */
 @utility btn {

@@ -39,10 +39,17 @@
   },
   "queHacemos": {
     "eyebrow": "Qué hacemos",
-    "statement": "Hacemos que tu negocio <em>destaque</em>.",
-    "col1": "Fotmark combina estrategia, creatividad, producción y marketing en un mismo lugar.",
-    "col2": "Desarrollamos proyectos de principio a fin: desde la idea y la creación de contenido hasta su difusión y promoción.",
-    "col3": "Una visión. Un equipo. Un objetivo: hacer crecer tu presencia."
+    "location": "Málaga · Costa del Sol",
+    "statement": "Hacemos que tu negocio<br></br><em>destaque</em>.",
+    "disciplinesLabel": "Disciplinas",
+    "disciplines": {
+      "strategy": "Estrategia",
+      "creativity": "Creatividad",
+      "production": "Producción",
+      "marketing": "Marketing"
+    },
+    "reading": "Fotmark combina estrategia, creatividad, producción y marketing en un mismo lugar. Desarrollamos proyectos de principio a fin: desde la idea y la creación de contenido hasta su difusión y promoción.",
+    "signature": "Una visión. Un equipo. Un objetivo: <em>hacer crecer tu presencia.</em>"
   },
   "servicios": {
     "eyebrow": "Servicios",

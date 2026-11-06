@@ -18,6 +18,12 @@ const { PNG } = pngjs;
 
 const repo = path.resolve(import.meta.dirname, "../../..");
 const outDir = path.join(repo, ".parity");
+const DEFAULT_PROTO = path.resolve(repo, "../fotmark_website.html");
+// D-042 arrived as a separate owner artifact. The readable reference carries that
+// replacement without mutating the workspace's raw, read-only prototype.
+const SECTION_PROTOS: Record<string, string> = {
+  quehacemos: path.resolve(repo, ".agents/reference/prototype.html"),
+};
 
 const { values: args } = parseArgs({
   allowNegative: true,
@@ -26,7 +32,7 @@ const { values: args } = parseArgs({
     url: { type: "string", default: "http://localhost:3000" },
     proto: {
       type: "string",
-      default: path.resolve(repo, "../fotmark_website.html"),
+      default: DEFAULT_PROTO,
     },
     theme: { type: "string", default: "dark" },
     locale: { type: "string", default: "es" },
@@ -87,6 +93,14 @@ if (!sections.length) {
 if (compareMode && !fs.existsSync(args.proto)) {
   console.error(`Prototype not found: ${args.proto} (pass --proto).`);
   process.exit(2);
+}
+if (compareMode && path.resolve(args.proto) === DEFAULT_PROTO) {
+  for (const proto of Object.values(SECTION_PROTOS)) {
+    if (!fs.existsSync(proto)) {
+      console.error(`Section prototype not found: ${proto}.`);
+      process.exit(2);
+    }
+  }
 }
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -170,6 +184,14 @@ try {
 
     const proto = compareMode ? await context.newPage() : null;
     if (proto) await prepare(proto, pathToFileURL(args.proto).href);
+    const sectionProto =
+      proto && path.resolve(args.proto) === DEFAULT_PROTO
+        ? await context.newPage()
+        : null;
+    const queHacemosProto = SECTION_PROTOS.quehacemos;
+    if (sectionProto && queHacemosProto) {
+      await prepare(sectionProto, pathToFileURL(queHacemosProto).href);
+    }
 
     for (const [protoSel, name] of sections) {
       const base = path.join(outDir, `${name}-${width}`);
@@ -197,7 +219,9 @@ try {
         });
         continue;
       }
-      const p = await shoot(proto, protoSel, `${base}-proto.png`);
+      const sourceProto =
+        SECTION_PROTOS[name] && sectionProto ? sectionProto : proto;
+      const p = await shoot(sourceProto, protoSel, `${base}-proto.png`);
       if (!p) {
         rows.push({
           section: name,
