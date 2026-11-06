@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { serviceKeys } from "@/features/contact/model";
-import { contactSchema, stripHeaderBreaks } from "@/features/contact/schema";
+import {
+  contactInputFromFormData,
+  contactSchema,
+  stripHeaderBreaks,
+} from "@/features/contact/schema";
 import {
   CONTACT_MAX_AGE_MS,
   CONTACT_MIN_AGE_MS,
@@ -13,7 +17,7 @@ const valid = {
   name: "Ada Lovelace",
   contact: "ada@example.com",
   businessType: "Hotel",
-  service: "fotografia",
+  services: ["fotografia"],
   message: "A useful project brief.",
   consent: "on",
   locale: "en",
@@ -27,8 +31,35 @@ const valid = {
 describe("contact input", () => {
   it("accepts every stable service key", () => {
     for (const service of serviceKeys) {
-      expect(contactSchema.safeParse({ ...valid, service }).success).toBe(true);
+      expect(
+        contactSchema.safeParse({ ...valid, services: [service] }).success,
+      ).toBe(true);
     }
+  });
+  it("accepts several services, drops repeats, rejects none or unknown", () => {
+    expect(
+      contactSchema.parse({
+        ...valid,
+        services: ["video", "dron", "video"],
+      }).services,
+    ).toEqual(["video", "dron"]);
+    expect(contactSchema.safeParse({ ...valid, services: [] }).success).toBe(
+      false,
+    );
+    expect(
+      contactSchema.safeParse({ ...valid, services: ["fotografia", "seo"] })
+        .success,
+    ).toBe(false);
+  });
+  it("collects every ticked service from the form data", () => {
+    const formData = new FormData();
+    formData.append("name", "Ada");
+    formData.append("services", "fotografia");
+    formData.append("services", "branding");
+    expect(contactInputFromFormData(formData)).toMatchObject({
+      name: "Ada",
+      services: ["fotografia", "branding"],
+    });
   });
   it("requires consent and rejects the honeypot", () => {
     expect(

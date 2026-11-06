@@ -17,7 +17,11 @@ export const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   contact: contactValue,
   businessType: z.string().trim().min(2).max(100),
-  service: z.enum(serviceKeys),
+  services: z
+    .array(z.enum(serviceKeys))
+    .min(1)
+    .max(serviceKeys.length)
+    .transform((keys) => [...new Set(keys)]),
   message: z.string().trim().min(10).max(2000),
   consent: z.literal("on"),
   locale: z.enum(contactLocales),
@@ -29,8 +33,14 @@ export const contactSchema = z.object({
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
-export function contactInputFromFormData(formData: FormData) {
-  return Object.fromEntries(formData.entries());
+export function contactInputFromFormData(
+  formData: FormData,
+): Record<string, unknown> {
+  return {
+    ...Object.fromEntries(formData.entries()),
+    // The service checkboxes share one name; `fromEntries` would keep only the last one.
+    services: formData.getAll("services"),
+  };
 }
 
 export function stripHeaderBreaks(value: string) {

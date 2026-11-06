@@ -64,7 +64,9 @@ export async function sendContact(
       const result = await resend.emails.send({
         from: CONTACT_FROM_EMAIL,
         to: CONTACT_TO_EMAIL,
-        subject: stripHeaderBreaks(`Fotmark enquiry: ${input.service}`),
+        subject: stripHeaderBreaks(
+          `Fotmark enquiry: ${input.services.join(", ")}`,
+        ),
         replyTo: contactIsEmail ? stripHeaderBreaks(input.contact) : undefined,
         react: <ContactEmail input={input} />,
       });

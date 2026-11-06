@@ -201,8 +201,8 @@
       "name": "Name",
       "contact": "Email or phone",
       "businessType": "Type of business",
-      "service": "Service",
-      "servicePlaceholder": "Select a service",
+      "services": "Services",
+      "servicesHint": "you can choose several",
       "message": "What would you like to achieve?"
     },
     "consent": {
@@ -221,7 +221,7 @@
       "name": "Enter your name.",
       "contact": "Enter a valid email address or phone number.",
       "businessType": "Tell us your type of business.",
-      "service": "Select a service.",
+      "services": "Select at least one service.",
       "message": "Tell us a little more (at least 10 characters).",
       "consent": "You need to accept the privacy policy."
     },

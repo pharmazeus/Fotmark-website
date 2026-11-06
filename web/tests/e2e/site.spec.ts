@@ -57,11 +57,17 @@ test("localized utility pages, form validation and no horizontal overflow", asyn
   await page.getByLabel("Ім’я").fill("Тестова заявка");
   await page.getByLabel("Email або телефон").fill("test@example.com");
   await page.getByLabel("Тип бізнесу").fill("Готель");
-  await page.getByLabel("Послуга").selectOption("fotografia");
+  // Several services can be ticked; the checkboxes are visually hidden, so click the chips.
+  for (const service of ["fotografia", "video"]) {
+    await page
+      .locator(`#formulario label:has(input[value='${service}'])`)
+      .click();
+  }
+  await expect(page.locator("input[name='services']:checked")).toHaveCount(2);
   await page
     .getByLabel("Чого ви хочете досягти?")
     .fill("Потрібна професійна фотозйомка готелю.");
-  await page.getByRole("checkbox").check();
+  await page.locator("input[name='consent']").check();
   await page.getByRole("button", { name: "Надіслати запит" }).click();
   await expect(page).toHaveURL(/\/ua\/gracias$/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(

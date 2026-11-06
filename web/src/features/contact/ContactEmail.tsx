@@ -16,7 +16,7 @@ export function ContactEmail({ input }: Props) {
         <strong>Business:</strong> {input.businessType}
       </p>
       <p>
-        <strong>Service:</strong> {input.service}
+        <strong>Services:</strong> {input.services.join(", ")}
       </p>
       <p>
         <strong>Locale:</strong> {input.locale}

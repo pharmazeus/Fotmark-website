@@ -12,8 +12,8 @@ export type ContactFormCopy = {
   name: string;
   contact: string;
   businessType: string;
-  service: string;
-  servicePlaceholder: string;
+  services: string;
+  servicesHint: string;
   message: string;
   consent: string;
   privacy: string;
@@ -23,7 +23,7 @@ export type ContactFormCopy = {
   statuses: Record<"blocked" | "unavailable" | "failed", string>;
   errors: Record<ContactField, string>;
   // Names come from the Sanity services; an option is listed only for a service that exists.
-  services: Partial<Record<(typeof serviceKeys)[number], string>>;
+  serviceNames: Partial<Record<(typeof serviceKeys)[number], string>>;
 };
 
 type Props = {
@@ -215,56 +215,68 @@ export function ContactForm({
                 className={fieldClass}
               />
             </Field>
-            <Field
-              id={`${id}-business`}
-              label={copy.businessType}
-              error={error("businessType")}
-            >
-              <input
-                id={`${id}-business`}
-                name="businessType"
-                autoComplete="organization"
-                required
-                maxLength={100}
-                aria-invalid={Boolean(error("businessType"))}
-                aria-describedby={
-                  error("businessType") ? `${id}-business-error` : undefined
-                }
-                className={fieldClass}
-              />
-            </Field>
-            <Field
-              id={`${id}-service`}
-              label={copy.service}
-              error={error("service")}
-            >
-              <select
-                id={`${id}-service`}
-                name="service"
-                required
-                defaultValue=""
-                aria-invalid={Boolean(error("service"))}
-                aria-describedby={
-                  error("service") ? `${id}-service-error` : undefined
-                }
-                className={`${fieldClass} bg-bg text-ink`}
-              >
-                <option value="" disabled>
-                  {copy.servicePlaceholder}
-                </option>
-                {serviceKeys.flatMap((service) => {
-                  const name = copy.services[service];
-                  return name
-                    ? [
-                        <option key={service} value={service}>
-                          {name}
-                        </option>,
-                      ]
-                    : [];
-                })}
-              </select>
-            </Field>
           </div>
+
+          <Field
+            id={`${id}-business`}
+            label={copy.businessType}
+            error={error("businessType")}
+          >
+            <input
+              id={`${id}-business`}
+              name="businessType"
+              autoComplete="organization"
+              required
+              maxLength={100}
+              aria-invalid={Boolean(error("businessType"))}
+              aria-describedby={
+                error("businessType") ? `${id}-business-error` : undefined
+              }
+              className={fieldClass}
+            />
+          </Field>
+
+          {/* Several services can be picked: checkboxes styled as the gallery filter buttons. */}
+          <fieldset
+            className="min-w-0"
+            aria-describedby={
+              error("services") ? `${id}-services-error` : undefined
+            }
+          >
+            <legend className="text-[11px] tracking-[.18em] text-mut uppercase">
+              {copy.services} · {copy.servicesHint}
+            </legend>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {serviceKeys.flatMap((service) => {
+                const name = copy.serviceNames[service];
+                return name
+                  ? [
+                      <label
+                        key={service}
+                        className="cursor-pointer border border-line2 px-[17px] py-[9px] text-micro leading-[normal] tracking-label text-mut uppercase transition-all duration-[400ms] ease-fotmark hover:border-acc hover:text-ink has-checked:border-acc has-checked:bg-acc has-checked:text-on-acc has-checked:hover:text-on-acc has-focus-visible:outline has-focus-visible:outline-offset-3 has-focus-visible:outline-acc"
+                      >
+                        <input
+                          type="checkbox"
+                          name="services"
+                          value={service}
+                          aria-invalid={Boolean(error("services"))}
+                          className="sr-only"
+                        />
+                        {name}
+                      </label>,
+                    ]
+                  : [];
+              })}
+            </div>
+            {error("services") && (
+              <p
+                id={`${id}-services-error`}
+                className="mt-2 text-[13px] text-acc2"
+              >
+                {error("services")}
+              </p>
+            )}
+          </fieldset>
 
           <Field
             id={`${id}-message`}

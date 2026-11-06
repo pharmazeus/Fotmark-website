@@ -39,8 +39,8 @@ export async function Contacto() {
     name: form("fields.name"),
     contact: form("fields.contact"),
     businessType: form("fields.businessType"),
-    service: form("fields.service"),
-    servicePlaceholder: form("fields.servicePlaceholder"),
+    services: form("fields.services"),
+    servicesHint: form("fields.servicesHint"),
     message: form("fields.message"),
     consent: form("consent.text"),
     privacy: form("consent.link"),
@@ -56,13 +56,13 @@ export async function Contacto() {
       name: form("errors.name"),
       contact: form("errors.contact"),
       businessType: form("errors.businessType"),
-      service: form("errors.service"),
+      services: form("errors.services"),
       message: form("errors.message"),
       consent: form("errors.consent"),
     },
-    services: Object.fromEntries(
+    serviceNames: Object.fromEntries(
       services.map(({ key, name }) => [key, name]),
-    ) as ContactFormCopy["services"],
+    ) as ContactFormCopy["serviceNames"],
   };
 
   return (

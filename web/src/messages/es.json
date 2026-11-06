@@ -201,8 +201,8 @@
       "name": "Nombre",
       "contact": "Email o teléfono",
       "businessType": "Tipo de negocio",
-      "service": "Servicio",
-      "servicePlaceholder": "Selecciona un servicio",
+      "services": "Servicios",
+      "servicesHint": "puedes elegir varios",
       "message": "¿Qué quieres conseguir?"
     },
     "consent": {
@@ -221,7 +221,7 @@
       "name": "Introduce tu nombre.",
       "contact": "Introduce un email o teléfono válido.",
       "businessType": "Indica tu tipo de negocio.",
-      "service": "Selecciona un servicio.",
+      "services": "Selecciona al menos un servicio.",
       "message": "Cuéntanos un poco más (mínimo 10 caracteres).",
       "consent": "Debes aceptar la política de privacidad."
     },

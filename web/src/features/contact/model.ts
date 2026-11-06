@@ -1,12 +1,13 @@
 import { SERVICE_KEYS } from "@/sanity/content-types";
 
 // The form's service options are the Studio «Icono» values (one per service document).
+// A visitor can tick several of them.
 export const serviceKeys = SERVICE_KEYS;
 
 export const contactLocales = ["es", "en", "uk"] as const;
 
 export type ContactField =
-  "name" | "contact" | "businessType" | "service" | "message" | "consent";
+  "name" | "contact" | "businessType" | "services" | "message" | "consent";
 
 export type ContactState = {
   status: "idle" | "invalid" | "blocked" | "unavailable" | "failed";
