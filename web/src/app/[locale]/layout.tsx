@@ -61,6 +61,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      // The site has its own ES/EN/UA switcher; browser auto-translate prompted on every
+      // visit and rendered the brand as "FOTBOOK" (D-045).
+      translate="no"
       data-theme="dark"
       // The theme script (Step 4) rewrites data-theme before hydration.
       suppressHydrationWarning
@@ -68,6 +71,7 @@ export default async function LocaleLayout({
     >
       <head>
         <meta name="theme-color" content={THEME_COLOR} />
+        <meta name="google" content="notranslate" />
         <ThemeScript />
         {/* Without JS nothing would reveal the `[data-reveal]` blocks. */}
         <noscript>
