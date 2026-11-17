@@ -249,5 +249,16 @@
       "cookiesTitle": "Política de cookies",
       "placeholder": "Texto pendiente de revisión legal. No publicar como versión definitiva."
     }
+  },
+  "card": {
+    "title": "Contacto",
+    "description": "FOTMARK, fotografía y marketing en la Costa del Sol. Web, teléfono, Instagram, WhatsApp y email.",
+    "website": "Visita nuestra web",
+    "links": "Contacto",
+    "call": "Llamar",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "save": "Guardar contacto"
   }
 }

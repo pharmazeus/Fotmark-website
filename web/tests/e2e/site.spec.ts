@@ -131,3 +131,45 @@ test("header breakpoint, reduced motion and supported widths stay stable", async
     )
     .toBe("1");
 });
+
+test("the printed QR opens the business card: no site chrome, links, vCard, no overflow", async ({
+  page,
+  request,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const response = await page.goto("/qr");
+  expect(response?.status()).toBe(200);
+  await expect(page).toHaveURL(/\/qr$/);
+  await expect(page.locator("header nav a[href='#servicios']")).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: "Visita nuestra web" }),
+  ).toHaveAttribute("href", /^\/\?utm_source=qr&utm_medium=print/);
+  const links = page.getByRole("navigation", { name: "Contacto" });
+  await expect(links.locator("a[href^='tel:']")).toHaveCount(1);
+  await expect(links.locator("a[href^='https://wa.me/']")).toHaveCount(1);
+  await expect(links.locator("a[href^='mailto:']")).toHaveCount(1);
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    )
+    .toBe(true);
+  const results = await new AxeBuilder({ page })
+    .disableRules(["color-contrast"])
+    .analyze();
+  expect(
+    results.violations.filter((item) =>
+      ["serious", "critical"].includes(item.impact ?? ""),
+    ),
+  ).toEqual([]);
+
+  await page.locator("a[lang='uk']").click();
+  await expect(page).toHaveURL(/\/ua\/qr$/);
+  await expect(
+    page.getByRole("link", { name: "Перейти на сайт" }),
+  ).toBeVisible();
+
+  const vcard = await request.get("/fotmark.vcf");
+  expect(vcard.status()).toBe(200);
+  expect(vcard.headers()["content-type"]).toMatch(/^text\/vcard/);
+  expect(await vcard.text()).toMatch(/^BEGIN:VCARD\r\nVERSION:3\.0\r\n/);
+});

@@ -249,5 +249,16 @@
       "cookiesTitle": "Політика cookies",
       "placeholder": "Текст очікує на юридичну перевірку. Не публікувати як фінальну версію."
     }
+  },
+  "card": {
+    "title": "Контакти",
+    "description": "FOTMARK — фото та маркетинг на Costa del Sol. Сайт, телефон, Instagram, WhatsApp та email.",
+    "website": "Перейти на сайт",
+    "links": "Контакти",
+    "call": "Подзвонити",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "save": "Зберегти контакт"
   }
 }

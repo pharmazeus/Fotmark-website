@@ -3,11 +3,7 @@ import { Cormorant_Garamond, Jost, Montserrat } from "next/font/google";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Footer } from "@/components/layout/Footer";
 import { Grain } from "@/components/layout/Grain";
-import { Header } from "@/components/layout/Header";
-import { RevealObserver } from "@/components/layout/RevealObserver";
-import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { routing } from "@/i18n/routing";
@@ -81,11 +77,9 @@ export default async function LocaleLayout({
       <body>
         <SkipLink />
         <Grain />
-        <ScrollProgress />
-        <Header />
+        {/* Site chrome (header, footer, scroll effects) lives in `(site)/layout.tsx`, so
+            standalone pages like the `/qr` business card render without it. */}
         {children}
-        <Footer />
-        <RevealObserver />
       </body>
     </html>
   );

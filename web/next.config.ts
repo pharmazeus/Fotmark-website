@@ -33,15 +33,6 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "64kb",
     },
   },
-  async redirects() {
-    return [
-      {
-        source: "/qr",
-        destination: "/?utm_source=qr&utm_medium=print&utm_campaign=tarjeta",
-        permanent: false,
-      },
-    ];
-  },
   async headers() {
     return [
       {
