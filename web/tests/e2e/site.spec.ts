@@ -173,3 +173,24 @@ test("the printed QR opens the business card: no site chrome, links, vCard, no o
   expect(vcard.headers()["content-type"]).toMatch(/^text\/vcard/);
   expect(await vcard.text()).toMatch(/^BEGIN:VCARD\r\nVERSION:3\.0\r\n/);
 });
+
+test("the gallery grid reveals on a phone although it is many screens tall", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 664 });
+  await page.goto("/");
+  const grid = page.locator("#proyectos [data-reveal]").last();
+  // The observer's root is the viewport minus 8% at the bottom. A grid taller than that
+  // root / 0.14 can never show 14% of itself, so the plain threshold would never fire.
+  // Polls until hydration has measured the container and laid out the 2 phone columns.
+  await expect
+    .poll(async () => (await grid.boundingBox())?.height ?? 0)
+    .toBeGreaterThan((664 * 0.92) / 0.14);
+  await grid.evaluate((el) =>
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + window.scrollY - innerHeight / 2,
+      behavior: "instant",
+    }),
+  );
+  await expect(grid).toHaveAttribute("data-in", "");
+});

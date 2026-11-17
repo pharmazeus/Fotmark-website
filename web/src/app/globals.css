@@ -253,6 +253,11 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
+  /* While a field has focus, the phone scrolls it into view as the keyboard opens. A
+     smooth scroll on top of that fights the keyboard animation and the page jerks. */
+  html:has(:is(input, textarea, select):focus) {
+    scroll-behavior: auto;
+  }
   body {
     @apply bg-bg font-sans font-light text-ink;
     overflow-x: hidden;
