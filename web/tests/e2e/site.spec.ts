@@ -52,9 +52,14 @@ test("localized utility pages, form validation and no horizontal overflow", asyn
         ),
     )
     .toBeGreaterThanOrEqual(3_000);
+  // The browser check stops a form with mistakes: nothing is sent or reset.
+  await page.getByLabel("Ім’я").fill("Тестова заявка");
+  await page.locator("#formulario label:has(input[value='dron'])").click();
   await page.getByRole("button", { name: "Надіслати запит" }).click();
   await expect(page.locator("[aria-invalid='true']").first()).toBeFocused();
-  await page.getByLabel("Ім’я").fill("Тестова заявка");
+  await expect(page.getByLabel("Ім’я")).toHaveValue("Тестова заявка");
+  await expect(page.locator("input[value='dron']")).toBeChecked();
+  await page.locator("#formulario label:has(input[value='dron'])").click();
   await page.getByLabel("Email або телефон").fill("test@example.com");
   await page.getByLabel("Тип бізнесу").fill("Готель");
   // Several services can be ticked; the checkboxes are visually hidden, so click the chips.
@@ -68,6 +73,21 @@ test("localized utility pages, form validation and no horizontal overflow", asyn
     .getByLabel("Чого ви хочете досягти?")
     .fill("Потрібна професійна фотозйомка готелю.");
   await page.locator("input[name='consent']").check();
+  // An address only the server rejects: React resets an action form after it answers, and
+  // the values it echoes back put everything typed back in place.
+  const contact = page.getByLabel("Email або телефон");
+  await contact.fill("ana@-hotel.com");
+  await page.getByRole("button", { name: "Надіслати запит" }).click();
+  await expect(contact).toBeFocused();
+  await expect(contact).toHaveAttribute("aria-invalid", "true");
+  await expect(contact).toHaveValue("ana@-hotel.com");
+  await expect(page.getByLabel("Ім’я")).toHaveValue("Тестова заявка");
+  await expect(page.locator("input[name='services']:checked")).toHaveCount(2);
+  await expect(page.getByLabel("Чого ви хочете досягти?")).toHaveValue(
+    "Потрібна професійна фотозйомка готелю.",
+  );
+  await expect(page.locator("input[name='consent']")).toBeChecked();
+  await contact.fill("test@example.com");
   await page.getByRole("button", { name: "Надіслати запит" }).click();
   await expect(page).toHaveURL(/\/ua\/gracias$/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
@@ -193,4 +213,143 @@ test("the gallery grid reveals on a phone although it is many screens tall", asy
     }),
   );
   await expect(grid).toHaveAttribute("data-in", "");
+});
+
+test("a focused form field stays visible under the header when the phone keyboard opens", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  const name = page.locator("#formulario input[name='name']");
+  const contact = page.locator("#formulario input[name='contact']");
+  await name.scrollIntoViewIfNeeded();
+  // The worst case seen on an iPhone: the field ends up hidden under the fixed header and
+  // the browser does not correct it. Then the keyboard takes half of the screen.
+  await name.evaluate((input) => {
+    const box = (
+      input.closest("[data-field]") ?? input
+    ).getBoundingClientRect();
+    window.scrollBy({ top: box.top - 20, behavior: "instant" });
+    input.focus({ preventScroll: true });
+  });
+  await page.setViewportSize({ width: 390, height: 420 });
+  const visible = (field: typeof name) =>
+    field.evaluate((input) => {
+      const header = document.getElementById("hd")?.getBoundingClientRect();
+      const box = (
+        input.closest("[data-field]") ?? input
+      ).getBoundingClientRect();
+      const bottom = window.visualViewport?.height ?? window.innerHeight;
+      return (
+        box.top >= (header?.bottom ?? 0) &&
+        input.getBoundingClientRect().bottom <= bottom
+      );
+    });
+  await expect.poll(() => visible(name)).toBe(true);
+
+  // Enter moves on to the next field instead of submitting a half-filled form.
+  await name.fill("Test");
+  await name.press("Enter");
+  await expect(contact).toBeFocused();
+  await expect(page).toHaveURL(/\/en$/);
+  await expect.poll(() => visible(contact)).toBe(true);
+});
+
+test("a field that is already visible is not moved when it takes focus", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  const business = page.locator("#formulario input[name='businessType']");
+  await business.evaluate((input) =>
+    window.scrollBy({
+      top: input.getBoundingClientRect().top - innerHeight / 2,
+      behavior: "instant",
+    }),
+  );
+  const before = await page.evaluate(() => scrollY);
+  await business.evaluate((input) => input.focus({ preventScroll: true }));
+  await page.waitForTimeout(800);
+  expect(await page.evaluate(() => scrollY)).toBe(before);
+});
+
+test("no horizontal overflow on narrow phones in any language", async ({
+  page,
+}) => {
+  for (const width of [320, 360, 390]) {
+    await page.setViewportSize({ width, height: 740 });
+    for (const path of ["/", "/en", "/ua"]) {
+      await page.goto(path);
+      await expect
+        .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
+        .toBeLessThanOrEqual(width);
+    }
+  }
+});
+
+test("a form with a mistake is not sent: the typing stays and the first problem is shown", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const posts: string[] = [];
+  page.on("request", (request) => {
+    // The page's own token request is a POST too; only a send carries the typing.
+    if (request.method() === "POST" && request.postData()?.includes("Ana"))
+      posts.push(request.url());
+  });
+  const form = page.locator("#formulario form");
+  const submit = page.getByRole("button", { name: "Enviar consulta" });
+  await submit.scrollIntoViewIfNeeded();
+  await expect(submit).toBeEnabled();
+  await page.getByLabel("Nombre").fill("Ana");
+  await page.getByLabel("Email o teléfono").fill("ana@example.com");
+  await page.getByLabel("Tipo de negocio").fill("Hotel");
+  await form.locator("label:has(input[value='fotografia'])").click();
+  await page
+    .getByLabel("¿Qué quieres conseguir?")
+    .fill("Fotos nuevas para la web del hotel.");
+  // Illia's case: everything filled in except the consent.
+  await submit.click();
+  const consent = page.locator("input[name='consent']");
+  await expect(consent).toBeFocused();
+  await expect(consent).toHaveAttribute("aria-invalid", "true");
+  await expect(form.getByText("Debes aceptar la política")).toBeVisible();
+  await expect(page.getByLabel("Nombre")).toHaveValue("Ana");
+  await expect(form.locator("input[value='fotografia']")).toBeChecked();
+  expect(posts).toEqual([]);
+  // The mark goes as soon as it is fixed.
+  await consent.check();
+  await expect(form.getByText("Debes aceptar la política")).toHaveCount(0);
+});
+
+test("ticking a service does not move the page, a focused field shows where you type", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const chip = page.locator("#formulario label:has(input[value='video'])");
+  await chip.evaluate((label) =>
+    window.scrollBy({
+      top: label.getBoundingClientRect().top - innerHeight / 2,
+      behavior: "instant",
+    }),
+  );
+  const before = await page.evaluate(() => scrollY);
+  await chip.click();
+  await expect(chip.locator("input")).toBeChecked();
+  await page.waitForTimeout(700);
+  expect(await page.evaluate(() => scrollY)).toBe(before);
+
+  const label = page.locator("#formulario label", { hasText: "Nombre" });
+  const colour = () => label.evaluate((node) => getComputedStyle(node).color);
+  const idle = await colour();
+  await page.getByLabel("Nombre").focus();
+  await expect.poll(colour).not.toBe(idle);
+
+  const whatsapp = page.locator("#formulario a[href^='https://wa.me/']");
+  await expect(whatsapp.locator("svg")).toHaveCount(1);
+  expect(
+    await whatsapp.evaluate((node) => getComputedStyle(node).borderTopWidth),
+  ).toBe("1px");
 });

@@ -17,6 +17,7 @@ import {
   type ContactInput,
 } from "./schema";
 import { createContactToken, verifyContactToken } from "./token";
+import { contactValues } from "./validate";
 
 export async function issueContactToken() {
   if (!env.CONTACT_FORM_TOKEN_SECRET) return { token: "" };
@@ -27,16 +28,19 @@ export async function sendContact(
   _previous: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  const verification = await checkBotId();
-  if (verification.isBot) return { status: "blocked" };
-
   const raw = contactInputFromFormData(formData);
+  // Echoed back only to the visitor who sent them, capped at the fields' own limits.
+  const values = contactValues(raw);
+
+  const verification = await checkBotId();
+  if (verification.isBot) return { status: "blocked", values };
+
   if (raw.website !== "" || typeof raw.startedAt !== "string") {
-    return { status: "blocked" };
+    return { status: "blocked", values };
   }
-  if (!env.CONTACT_FORM_TOKEN_SECRET) return { status: "unavailable" };
+  if (!env.CONTACT_FORM_TOKEN_SECRET) return { status: "unavailable", values };
   if (!verifyContactToken(raw.startedAt, env.CONTACT_FORM_TOKEN_SECRET).ok) {
-    return { status: "blocked" };
+    return { status: "blocked", values };
   }
 
   const parsed = contactSchema.safeParse(raw);
@@ -46,7 +50,7 @@ export async function sendContact(
       const field = issue.path[0] as ContactField | undefined;
       if (field && !(field in fieldErrors)) fieldErrors[field] = issue.code;
     }
-    return { status: "invalid", fieldErrors };
+    return { status: "invalid", fieldErrors, values };
   }
 
   const mockDelivery =
@@ -56,7 +60,7 @@ export async function sendContact(
   if (!mockDelivery) {
     const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = env;
     if (!RESEND_API_KEY || !CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
-      return { status: "unavailable" };
+      return { status: "unavailable", values };
     }
     const contactIsEmail = zodEmail(input.contact);
     try {
@@ -72,11 +76,11 @@ export async function sendContact(
       });
       if (result.error) {
         console.error("contact_delivery_failed", { provider: "resend" });
-        return { status: "failed" };
+        return { status: "failed", values };
       }
     } catch {
       console.error("contact_delivery_failed", { provider: "resend" });
-      return { status: "failed" };
+      return { status: "failed", values };
     }
     if (contactIsEmail) {
       await sendAutoReply({

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { contactLocales, serviceKeys } from "./model";
+import { PHONE_PATTERN } from "./validate";
 
 const contactValue = z
   .string()
@@ -7,9 +8,7 @@ const contactValue = z
   .min(5)
   .max(254)
   .refine(
-    (value) =>
-      z.email().safeParse(value).success ||
-      /^[+()\d][\d\s().-]{6,24}$/.test(value),
+    (value) => z.email().safeParse(value).success || PHONE_PATTERN.test(value),
     "contact",
   );
 

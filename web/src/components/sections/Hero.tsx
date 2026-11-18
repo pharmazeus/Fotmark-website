@@ -10,7 +10,9 @@ export async function Hero() {
     <section
       id="top"
       data-section="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center bg-bg px-gut pt-[130px] pb-[100px] text-center"
+      // overflow-x-clip: at ≤320px the wordmark's trailing letter-spacing runs 5px past the
+      // screen (only empty tracking, no ink); the page no longer hides overflow globally.
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-x-clip bg-bg px-gut pt-[130px] pb-[100px] text-center"
     >
       <div className="flex flex-col items-center">
         <Monogram className="mb-[clamp(6px,1vw,12px)] w-[clamp(60px,8vw,112px)] animate-mono text-monogram grayscale [--from:translateY(20px)_scale(.94)]" />

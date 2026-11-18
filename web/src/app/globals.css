@@ -260,7 +260,8 @@
   }
   body {
     @apply bg-bg font-sans font-light text-ink;
-    overflow-x: hidden;
+    /* No overflow-x here: nothing overflows (the marquee clips itself, e2e checks every
+       width), and on WebKit it threw the page off target when a form field took focus. */
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -401,6 +402,41 @@
   @media (width < 821px) {
     padding: var(--btn-py, 15px) var(--btn-px, 26px);
     font-size: var(--btn-size, 11px);
+  }
+}
+
+/* .field: a form text field (D-046). A filled hairline box, so it reads as a field on the
+   dark page (the --mut bottom edge is ≥3:1, WCAG 1.4.11); gold border and a 2px gold
+   underline (inset shadow, no layout shift) while it has focus. */
+@utility field {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line2);
+  border-bottom-color: var(--mut);
+  border-radius: 0;
+  background: var(--bg2);
+  padding: 13px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  caret-color: var(--acc);
+  /* Invisible, but drawn in forced-colors mode, where borders and shadows are flattened. */
+  outline: 2px solid transparent;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    box-shadow 0.25s;
+
+  &::placeholder {
+    color: var(--dim);
+  }
+  &[aria-invalid="true"] {
+    border-color: var(--acc2);
+  }
+  &:focus {
+    border-color: var(--acc);
+    background: var(--bg3);
+    box-shadow: inset 0 -1px 0 var(--acc);
   }
 }
 

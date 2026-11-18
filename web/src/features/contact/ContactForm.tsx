@@ -1,10 +1,23 @@
 "use client";
 
 import { useActionState, useEffect, useId, useRef, useState } from "react";
-import { useFormStatus } from "react-dom";
+import { flushSync, useFormStatus } from "react-dom";
+import { WhatsAppIcon } from "@/features/card/icons";
 import type { Locale } from "@/i18n/routing";
 import { issueContactToken, sendContact } from "./actions";
-import { initialContactState, serviceKeys, type ContactField } from "./model";
+import {
+  initialContactState,
+  serviceKeys,
+  type ContactField,
+  type ContactState,
+} from "./model";
+import { useKeepFieldInView } from "./useKeepFieldInView";
+import {
+  contactErrors,
+  contactFields,
+  formValues,
+  type ContactErrors,
+} from "./validate";
 
 export type ContactFormCopy = {
   title: string;
@@ -33,8 +46,9 @@ type Props = {
   copy: ContactFormCopy;
 };
 
-const fieldClass =
-  "w-full rounded-none border-0 border-b border-line bg-transparent px-0 py-3 text-[16px] text-ink outline-none [transition:border-color_.25s] placeholder:text-dim focus:border-acc";
+// `field`: globals.css (D-046). `scroll-mt-28`: keyboard Tab / Shift+Tab stops with the
+// label clear of the fixed header.
+const fieldClass = "field scroll-mt-28";
 
 export function ContactForm({
   locale,
@@ -51,6 +65,14 @@ export function ContactForm({
   const utmMedium = useRef<HTMLInputElement>(null);
   const utmCampaign = useRef<HTMLInputElement>(null);
   const id = useId();
+  useKeepFieldInView(formRef);
+  // Errors on screen: the browser's own check on submit, or the server's answer.
+  const [errors, setErrors] = useState<ContactErrors>({});
+  const [answered, setAnswered] = useState(state);
+  if (state !== answered) {
+    setAnswered(state);
+    setErrors(serverErrors(state));
+  }
 
   useEffect(() => {
     let active = true;
@@ -121,15 +143,44 @@ export function ContactForm({
   }, []);
 
   useEffect(() => {
-    if (state.status === "invalid") {
-      formRef.current
-        ?.querySelector<HTMLElement>("[aria-invalid='true']")
-        ?.focus();
-    }
+    const form = formRef.current;
+    if (state.status !== "invalid" || !form) return;
+    const found = serverErrors(state);
+    const first = contactFields.find((field) => found[field]);
+    if (first) focusField(form, first);
   }, [state]);
 
+  const values = state.values;
   const error = (field: ContactField) =>
-    state.fieldErrors?.[field] ? copy.errors[field] : undefined;
+    errors[field] ? copy.errors[field] : undefined;
+
+  // A form with a mistake is not sent: nothing is reset, the person sees every problem at
+  // once and lands on the first one.
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const found = contactErrors(formValues(event.currentTarget));
+    const first = contactFields.find((field) => found[field]);
+    if (!first) return setErrors({});
+    event.preventDefault();
+    // Commit the marks first, so the field is announced as invalid with its error; the focus
+    // stays inside the tap, which iOS needs to open the keyboard.
+    flushSync(() => setErrors(found));
+    focusField(event.currentTarget, first);
+  };
+  // A marked field loses its mark as soon as it is fixed. Only the field being edited is
+  // re-checked: unmarked fields are never flagged while the person types, and a mark from the
+  // server stays until that field changes.
+  const onChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const target = event.target;
+    if (!(
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement
+    ))
+      return;
+    const field = contactFields.find((name) => name === target.name);
+    if (!field || !errors[field]) return;
+    if (contactErrors(formValues(event.currentTarget))[field]) return;
+    setErrors((current) => ({ ...current, [field]: undefined }));
+  };
 
   return (
     <div
@@ -147,6 +198,9 @@ export function ContactForm({
           action={action}
           className="mt-12 grid gap-8"
           noValidate
+          onSubmit={onSubmit}
+          onChange={onChange}
+          onKeyDown={nextFieldOnEnter}
         >
           <input type="hidden" name="locale" value={locale} />
           <input type="hidden" name="startedAt" value={token} />
@@ -186,7 +240,10 @@ export function ContactForm({
               <input
                 id={`${id}-name`}
                 name="name"
+                defaultValue={values?.name}
                 autoComplete="name"
+                autoCapitalize="words"
+                enterKeyHint="next"
                 required
                 maxLength={100}
                 aria-invalid={Boolean(error("name"))}
@@ -204,8 +261,13 @@ export function ContactForm({
               <input
                 id={`${id}-contact`}
                 name="contact"
+                defaultValue={values?.contact}
                 autoComplete="email"
                 inputMode="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="next"
                 required
                 maxLength={254}
                 aria-invalid={Boolean(error("contact"))}
@@ -225,7 +287,10 @@ export function ContactForm({
             <input
               id={`${id}-business`}
               name="businessType"
+              defaultValue={values?.businessType}
               autoComplete="organization"
+              autoCapitalize="sentences"
+              enterKeyHint="next"
               required
               maxLength={100}
               aria-invalid={Boolean(error("businessType"))}
@@ -238,12 +303,12 @@ export function ContactForm({
 
           {/* Several services can be picked: checkboxes styled as the gallery filter buttons. */}
           <fieldset
-            className="min-w-0"
+            className="min-w-0 scroll-mt-28"
             aria-describedby={
               error("services") ? `${id}-services-error` : undefined
             }
           >
-            <legend className="text-[11px] tracking-[.18em] text-mut uppercase">
+            <legend className="text-[12px] tracking-[.18em] text-mut uppercase">
               {copy.services} · {copy.servicesHint}
             </legend>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -253,14 +318,17 @@ export function ContactForm({
                   ? [
                       <label
                         key={service}
-                        className="cursor-pointer border border-line2 px-[17px] py-[9px] text-micro leading-[normal] tracking-label text-mut uppercase transition-all duration-[400ms] ease-fotmark hover:border-acc hover:text-ink has-checked:border-acc has-checked:bg-acc has-checked:text-on-acc has-checked:hover:text-on-acc has-focus-visible:outline has-focus-visible:outline-offset-3 has-focus-visible:outline-acc"
+                        // `relative` anchors the visually hidden checkbox to its chip, so its
+                        // focus never points the browser anywhere else. 44px tap height.
+                        className="relative inline-flex min-h-11 cursor-pointer items-center border border-line2 px-[17px] py-[9px] text-micro leading-[normal] tracking-label text-mut uppercase transition-all duration-[400ms] ease-fotmark hover:border-acc hover:text-ink has-checked:border-acc has-checked:bg-acc has-checked:text-on-acc has-checked:hover:text-on-acc has-focus-visible:outline has-focus-visible:outline-offset-3 has-focus-visible:outline-acc has-aria-invalid:border-acc2"
                       >
                         <input
                           type="checkbox"
                           name="services"
                           value={service}
+                          defaultChecked={values?.services.includes(service)}
                           aria-invalid={Boolean(error("services"))}
-                          className="sr-only"
+                          className="sr-only scroll-mt-28"
                         />
                         {name}
                       </label>,
@@ -269,12 +337,9 @@ export function ContactForm({
               })}
             </div>
             {error("services") && (
-              <p
-                id={`${id}-services-error`}
-                className="mt-2 text-[13px] text-acc2"
-              >
+              <ErrorText id={`${id}-services-error`} className="mt-3">
                 {error("services")}
-              </p>
+              </ErrorText>
             )}
           </fieldset>
 
@@ -290,26 +355,32 @@ export function ContactForm({
               minLength={10}
               maxLength={2000}
               rows={5}
+              defaultValue={values?.message}
               aria-invalid={Boolean(error("message"))}
               aria-describedby={
                 error("message") ? `${id}-message-error` : undefined
               }
-              className={`${fieldClass} resize-y`}
+              className={`${fieldClass} min-h-[140px] resize-y`}
             />
           </Field>
 
           <div>
-            <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-[1.6] text-ink2">
-              <input
-                type="checkbox"
-                name="consent"
-                required
-                aria-invalid={Boolean(error("consent"))}
-                aria-describedby={
-                  error("consent") ? `${id}-consent-error` : undefined
-                }
-                className="mt-1 size-4 shrink-0 accent-acc"
-              />
+            <label className="flex min-h-11 cursor-pointer items-start gap-3 py-2 text-[14px] leading-[1.6] text-ink2">
+              {/* A drawn box on the real checkbox: it stays focusable in place, never hidden. */}
+              <span className="grid size-[22px] shrink-0 place-items-center">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  defaultChecked={values?.consent}
+                  required
+                  aria-invalid={Boolean(error("consent"))}
+                  aria-describedby={
+                    error("consent") ? `${id}-consent-error` : undefined
+                  }
+                  className="peer col-start-1 row-start-1 size-[22px] cursor-pointer scroll-mt-28 appearance-none border border-mut bg-bg2 transition-colors duration-[250ms] checked:border-acc checked:bg-acc aria-invalid:border-acc2"
+                />
+                <CheckIcon className="pointer-events-none col-start-1 row-start-1 size-[14px] fill-none stroke-on-acc stroke-[2] opacity-0 peer-checked:opacity-100" />
+              </span>
               <span>
                 {copy.consent}{" "}
                 <a href={privacyHref} className="link-underline text-acc2">
@@ -318,29 +389,28 @@ export function ContactForm({
               </span>
             </label>
             {error("consent") && (
-              <p
-                id={`${id}-consent-error`}
-                className="mt-2 text-[13px] text-acc2"
-              >
+              <ErrorText id={`${id}-consent-error`} className="mt-1">
                 {error("consent")}
-              </p>
+              </ErrorText>
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-5">
+          {/* Full-width buttons on a phone, side by side from 701px. */}
+          <div className="flex flex-col gap-3 lb:flex-row lb:items-center lb:gap-4">
             <SubmitButton disabled={!token || !botReady} copy={copy} />
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-underline touch-manipulation py-3 text-[12px] tracking-[.16em] text-ink2 uppercase"
+              className="btn touch-manipulation justify-center [--btn-px:32px] [--btn-py:15px] [--btn-size:var(--text-label)] [--btn-track:.18em]"
             >
+              <WhatsAppIcon className="size-[18px] shrink-0 fill-none stroke-current stroke-[1.4]" />
               {copy.whatsapp}
             </a>
           </div>
 
           <p
-            className="min-h-6 text-[14px] text-acc2"
+            className="min-h-6 text-[14px] text-acc"
             role="status"
             aria-live="polite"
           >
@@ -358,6 +428,26 @@ export function ContactForm({
   );
 }
 
+// Enter in a one-line field moves to the next field instead of submitting a half-filled
+// form (which would throw the person back to the first error).
+function nextFieldOnEnter(event: React.KeyboardEvent<HTMLFormElement>) {
+  const field = event.target;
+  if (event.key !== "Enter" || event.repeat) return;
+  // 229: Safari ends an IME composition before the Enter that confirms it.
+  if (event.nativeEvent.isComposing || event.keyCode === 229) return;
+  if (!(field instanceof HTMLInputElement) || field.type === "checkbox") return;
+  const fields = Array.from(
+    event.currentTarget.querySelectorAll<HTMLElement>(
+      "[data-field] input, [data-field] textarea",
+    ),
+  );
+  const index = fields.indexOf(field);
+  const next = index < 0 ? undefined : fields[index + 1];
+  if (!next) return;
+  event.preventDefault();
+  next.focus();
+}
+
 function Field({
   id,
   label,
@@ -370,21 +460,76 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    // The label turns gold while its field has focus, so it's clear where the typing goes.
+    <div data-field className="group grid gap-2">
       <label
         htmlFor={id}
-        className="text-[11px] tracking-[.18em] text-mut uppercase"
+        className="text-[12px] tracking-[.18em] text-mut uppercase transition-colors duration-[250ms] group-focus-within:text-acc group-has-aria-invalid:text-acc"
       >
         {label}
       </label>
       {children}
-      {error && (
-        <p id={`${id}-error`} className="mt-2 text-[13px] text-acc2">
-          {error}
-        </p>
-      )}
+      {error && <ErrorText id={`${id}-error`}>{error}</ErrorText>}
     </div>
   );
+}
+
+function ErrorText({
+  id,
+  className = "",
+  children,
+}: {
+  id: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <p
+      id={id}
+      className={`flex items-start gap-2 text-[13px] leading-[1.5] text-acc ${className}`}
+    >
+      <svg
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+        focusable="false"
+        className="mt-[2px] size-[15px] shrink-0 fill-none stroke-current stroke-[1.3]"
+      >
+        <circle cx="8" cy="8" r="6.6" />
+        <path d="M8 4.6v4.2M8 10.9v.5" />
+      </svg>
+      {children}
+    </p>
+  );
+}
+
+function CheckIcon({ className }: { className: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <path d="M3.5 8.4l3 3 6-6.6" />
+    </svg>
+  );
+}
+
+function serverErrors(state: ContactState): ContactErrors {
+  const errors: ContactErrors = {};
+  for (const field of contactFields)
+    if (state.fieldErrors?.[field]) errors[field] = true;
+  return errors;
+}
+
+// Text fields: the browser scrolls them in as the keyboard opens (useKeepFieldInView fixes
+// the landing). Services: the whole group with its title, not one chip, comes into view.
+function focusField(form: HTMLFormElement, field: ContactField) {
+  const control = form.querySelector<HTMLElement>(`[name="${field}"]`);
+  if (!control) return;
+  if (field !== "services") return control.focus();
+  control.focus({ preventScroll: true });
+  control.closest("fieldset")?.scrollIntoView({ block: "nearest" });
 }
 
 function SubmitButton({
@@ -399,7 +544,7 @@ function SubmitButton({
     <button
       type="submit"
       disabled={disabled || pending}
-      className="btn touch-manipulation border border-acc bg-acc px-[32px] py-[15px] text-[11.5px] tracking-[.18em] text-on-acc uppercase disabled:cursor-not-allowed disabled:opacity-50"
+      className="btn touch-manipulation justify-center border border-acc bg-acc px-[32px] py-[15px] text-label tracking-[.18em] text-on-acc uppercase disabled:cursor-not-allowed disabled:opacity-50"
     >
       {pending ? copy.sending : copy.submit}
     </button>
